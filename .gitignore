@@ -1,0 +1,17 @@
+.idea
+.vscode
+.vs
+db
+
+###> symfony/framework-bundle ###
+.env*
+config/secrets/prod/prod.decrypt.private.php
+public/bundles
+var
+vendor
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+phpunit.xml
+###< symfony/phpunit-bridge ###
