@@ -41,7 +41,11 @@ Le responsable de l'entrepôt doit être alerté sur les stocks, et pouvoir fair
 
 Avec comme objectif avoir un retour sur investissement (ROI) avant Mai.
 
-![](assets/graph.svg)
+
+<center>
+    <img width="480px" src="/assets/graph.svg">
+</center>
+
 
 | La charge de travail est estimé à 4 développeurs dont un lead pour une durée estimé a moins de1 mois. Le retour sur investissement est prévuaprès 9 Mois. | Le planning sera réalisé par le lead dev qui organisera également les taches de chacun L'outil sera développé avec un client lourd. |
-| :--: | :--: |
+| :-- | :-- |
