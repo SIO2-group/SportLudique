@@ -43,7 +43,7 @@ Avec comme objectif avoir un retour sur investissement (ROI) avant Mai.
 
 
 <center>
-    <img width="480px" src="/assets/graph.svg">
+    <img width="480px" src="/docs/graph.svg">
 </center>
 
 
