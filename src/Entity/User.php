@@ -2,30 +2,33 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
- *
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
+
+    /**
      * @var string|null
-     *
      * @ORM\Column(name="last_name", type="string", length=128, nullable=true)
      */
     private $lastName;
@@ -38,23 +41,14 @@ class User
     private $fistName;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=128, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var json|null
-     *
+     * @ORM\Column(type="json|null")
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
     private $roles;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=128, nullable=true)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
@@ -114,24 +108,52 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?array
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->roles;
+        return (string) $this->email;
     }
 
-    public function setRoles(?array $roles): self
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -139,30 +161,22 @@ class User
     }
 
     /**
-     * @return Collection|Article[]
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
      */
-    public function getArticle(): Collection
+    public function getSalt(): ?string
     {
-        return $this->article;
+        return null;
     }
 
-    public function addArticle(Article $article): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        if (!$this->article->contains($article)) {
-            $this->article[] = $article;
-            $article->addUser($this);
-        }
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->article->removeElement($article)) {
-            $article->removeUser($this);
-        }
-
-        return $this;
-    }
-
 }
