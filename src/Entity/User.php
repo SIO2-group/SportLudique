@@ -2,42 +2,104 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ID_USER", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $idUser;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="LAST_NAME", type="string", length=128, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="FIRST_NAME", type="string", length=128, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="EMAIL", type="string", length=128, nullable=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @var json|null
+     *
+     * @ORM\Column(name="ROLES", type="json", nullable=true)
      */
-    private $roles = [];
+    private $roles;
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @var string|null
+     *
+     * @ORM\Column(name="PASSWORD", type="string", length=128, nullable=true)
      */
     private $password;
 
-    public function getId(): ?int
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="idUser")
+     */
+    private $idArticle;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->id;
+        $this->idArticle = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -45,59 +107,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
+    public function getRoles(): ?array
     {
-        return (string) $this->email;
+        return $this->roles;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
+    public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -105,22 +139,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
+     * @return Collection|Article[]
      */
-    public function getSalt(): ?string
+    public function getIdArticle(): Collection
     {
-        return null;
+        return $this->idArticle;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function addIdArticle(Article $idArticle): self
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        if (!$this->idArticle->contains($idArticle)) {
+            $this->idArticle[] = $idArticle;
+            $idArticle->addIdUser($this);
+        }
+
+        return $this;
     }
+
+    public function removeIdArticle(Article $idArticle): self
+    {
+        if ($this->idArticle->removeElement($idArticle)) {
+            $idArticle->removeIdUser($this);
+        }
+
+        return $this;
+    }
+
 }

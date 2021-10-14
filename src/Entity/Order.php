@@ -7,50 +7,101 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Order
  *
- * @ORM\Table(name="order")
+ * @ORM\Table(name="order", indexes={@ORM\Index(name="I_FK_ORDER_ARTICLE", columns={"ID_ARTICLE"}), @ORM\Index(name="I_FK_ORDER_INVOICE", columns={"ID_INVOICE"}), @ORM\Index(name="I_FK_ORDER_USER", columns={"ID_USER"})})
  * @ORM\Entity
  */
 class Order
 {
     /**
-     * @var int
+     * @var string|null
      *
-     * @ORM\Column(name="order_id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Column(name="STATUS", type="string", length=128, nullable=true)
      */
-    private $orderId;
+    private $status;
 
     /**
-     * @var int
+     * @var \Invoice
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Invoice")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_INVOICE", referencedColumnName="ID_INVOICE")
+     * })
      */
-    private $userId;
+    private $idInvoice;
 
     /**
-     * @var int
+     * @var \Article
      *
-     * @ORM\Column(name="article_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_ARTICLE", referencedColumnName="ID_ARTICLE")
+     * })
      */
-    private $articleId;
+    private $idArticle;
 
-    public function getOrderId(): ?int
+    /**
+     * @var \User
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_USER", referencedColumnName="ID_USER")
+     * })
+     */
+    private $idUser;
+
+    public function getStatus(): ?string
     {
-        return $this->orderId;
+        return $this->status;
     }
 
-    public function getUserId(): ?int
+    public function setStatus(?string $status): self
     {
-        return $this->userId;
+        $this->status = $status;
+
+        return $this;
     }
 
-    public function getArticleId(): ?int
+    public function getIdInvoice(): ?Invoice
     {
-        return $this->articleId;
+        return $this->idInvoice;
     }
+
+    public function setIdInvoice(?Invoice $idInvoice): self
+    {
+        $this->idInvoice = $idInvoice;
+
+        return $this;
+    }
+
+    public function getIdArticle(): ?Article
+    {
+        return $this->idArticle;
+    }
+
+    public function setIdArticle(?Article $idArticle): self
+    {
+        $this->idArticle = $idArticle;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(?User $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+
 }

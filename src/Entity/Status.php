@@ -15,22 +15,22 @@ class Status
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ID_STATUS", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $idStatus;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="label", type="string", length=32, nullable=true)
+     * @ORM\Column(name="LABEL", type="string", length=128, nullable=true)
      */
     private $label;
 
-    public function getId(): ?int
+    public function getIdStatus(): ?int
     {
-        return $this->id;
+        return $this->idStatus;
     }
 
     public function getLabel(): ?string
@@ -44,4 +44,6 @@ class Status
 
         return $this;
     }
+
+
 }

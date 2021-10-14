@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="article_category_id_fk", columns={"category_id"}), @ORM\Index(name="article_brand_id_fk", columns={"brand_id"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="I_FK_ARTICLE_BRAND", columns={"ID_BRAND"}), @ORM\Index(name="I_FK_ARTICLE_CATEGORIE", columns={"ID_CATEGORIE"})})
  * @ORM\Entity
  */
 class Article
@@ -15,63 +17,86 @@ class Article
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ID_ARTICLE", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $idArticle;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     * @ORM\Column(name="NAME", type="string", length=128, nullable=false)
      */
     private $name;
 
     /**
-     * @var bool|null
+     * @var int|null
      *
-     * @ORM\Column(name="is_active", type="boolean", nullable=true)
+     * @ORM\Column(name="PRICE", type="integer", nullable=true)
      */
-    private $isActive = '0';
+    private $price;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="quantity", type="integer", nullable=true)
+     * @ORM\Column(name="QUANTITY", type="integer", nullable=true)
      */
-    private $quantity = '0';
+    private $quantity;
 
     /**
-     * @var int
+     * @var bool|null
      *
-     * @ORM\Column(name="price", type="integer", nullable=false)
+     * @ORM\Column(name="IS_ACTIVE", type="boolean", nullable=true)
      */
-    private $price;
+    private $isActive;
+
+    /**
+     * @var \Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID_CATEGORIE", referencedColumnName="ID_CATEGORIE")
+     * })
+     */
+    private $idCategorie;
 
     /**
      * @var \Brand
      *
      * @ORM\ManyToOne(targetEntity="Brand")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ID_BRAND", referencedColumnName="ID_BRAND")
      * })
      */
-    private $brand;
+    private $idBrand;
 
     /**
-     * @var \Category
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="idArticle")
+     * @ORM\JoinTable(name="review",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="ID_ARTICLE", referencedColumnName="ID_ARTICLE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="ID_USER", referencedColumnName="ID_USER")
+     *   }
+     * )
      */
-    private $category;
+    private $idUser;
 
-    public function getId(): ?int
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->id;
+        $this->idUser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getIdArticle(): ?int
+    {
+        return $this->idArticle;
     }
 
     public function getName(): ?string
@@ -86,14 +111,14 @@ class Article
         return $this;
     }
 
-    public function getIsActive(): ?bool
+    public function getPrice(): ?int
     {
-        return $this->isActive;
+        return $this->price;
     }
 
-    public function setIsActive(?bool $isActive): self
+    public function setPrice(?int $price): self
     {
-        $this->isActive = $isActive;
+        $this->price = $price;
 
         return $this;
     }
@@ -110,41 +135,64 @@ class Article
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getIsActive(): ?bool
     {
-        return $this->price;
+        return $this->isActive;
     }
 
-    public function setPrice(int $price): self
+    public function setIsActive(?bool $isActive): self
     {
-        $this->price = $price;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
-    public function getBrand(): ?Brand
+    public function getIdCategorie(): ?Categorie
     {
-        return $this->brand;
+        return $this->idCategorie;
     }
 
-    public function setBrand(?Brand $brand): self
+    public function setIdCategorie(?Categorie $idCategorie): self
     {
-        $this->brand = $brand;
+        $this->idCategorie = $idCategorie;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getIdBrand(): ?Brand
     {
-        return $this->category;
+        return $this->idBrand;
     }
 
-    public function setCategory(?Category $category): self
+    public function setIdBrand(?Brand $idBrand): self
     {
-        $this->category = $category;
+        $this->idBrand = $idBrand;
 
         return $this;
     }
 
+    /**
+     * @return Collection|User[]
+     */
+    public function getIdUser(): Collection
+    {
+        return $this->idUser;
+    }
+
+    public function addIdUser(User $idUser): self
+    {
+        if (!$this->idUser->contains($idUser)) {
+            $this->idUser[] = $idUser;
+        }
+
+        return $this;
+    }
+
+    public function removeIdUser(User $idUser): self
+    {
+        $this->idUser->removeElement($idUser);
+
+        return $this;
+    }
 
 }

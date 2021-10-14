@@ -5,21 +5,21 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Brand
+ * Categorie
  *
- * @ORM\Table(name="brand")
+ * @ORM\Table(name="categorie")
  * @ORM\Entity
  */
-class Brand
+class Categorie
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_BRAND", type="integer", nullable=false)
+     * @ORM\Column(name="ID_CATEGORIE", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idBrand;
+    private $idCategorie;
 
     /**
      * @var string|null
@@ -28,9 +28,9 @@ class Brand
      */
     private $name;
 
-    public function getIdBrand(): ?int
+    public function getIdCategorie(): ?int
     {
-        return $this->idBrand;
+        return $this->idCategorie;
     }
 
     public function getName(): ?string

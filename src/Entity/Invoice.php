@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Invoice
  *
- * @ORM\Table(name="invoice", indexes={@ORM\Index(name="invoice_order_order_id_fk", columns={"order_id"}), @ORM\Index(name="invoice___fk", columns={"status_id"})})
+ * @ORM\Table(name="invoice", indexes={@ORM\Index(name="I_FK_INVOICE_STATUS", columns={"ID_STATUS"})})
  * @ORM\Entity
  */
 class Invoice
@@ -15,76 +15,54 @@ class Invoice
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="ID_INVOICE", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $idInvoice;
 
     /**
-     * @var int|null
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="amount", type="integer", nullable=true)
+     * @ORM\Column(name="PAY_DATE", type="date", nullable=true)
      */
-    private $amount;
+    private $payDate;
 
     /**
      * @var \Status
      *
      * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ID_STATUS", referencedColumnName="ID_STATUS")
      * })
      */
-    private $status;
+    private $idStatus;
 
-    /**
-     * @var \Order
-     *
-     * @ORM\ManyToOne(targetEntity="Order")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="order_id")
-     * })
-     */
-    private $order;
-
-    public function getId(): ?int
+    public function getIdInvoice(): ?int
     {
-        return $this->id;
+        return $this->idInvoice;
     }
 
-    public function getAmount(): ?int
+    public function getPayDate(): ?\DateTimeInterface
     {
-        return $this->amount;
+        return $this->payDate;
     }
 
-    public function setAmount(?int $amount): self
+    public function setPayDate(?\DateTimeInterface $payDate): self
     {
-        $this->amount = $amount;
+        $this->payDate = $payDate;
 
         return $this;
     }
 
-    public function getStatus(): ?Status
+    public function getIdStatus(): ?Status
     {
-        return $this->status;
+        return $this->idStatus;
     }
 
-    public function setStatus(?Status $status): self
+    public function setIdStatus(?Status $idStatus): self
     {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getOrder(): ?Order
-    {
-        return $this->order;
-    }
-
-    public function setOrder(?Order $order): self
-    {
-        $this->order = $order;
+        $this->idStatus = $idStatus;
 
         return $this;
     }
