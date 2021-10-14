@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Invoice
  *
- * @ORM\Table(name="invoice", indexes={@ORM\Index(name="I_FK_INVOICE_STATUS", columns={"ID_STATUS"})})
+ * @ORM\Table(name="invoice", indexes={@ORM\Index(name="I_FK_INVOICE_STATUS", columns={"status_id"})})
  * @ORM\Entity
  */
 class Invoice
@@ -15,16 +15,16 @@ class Invoice
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_INVOICE", type="integer", nullable=false)
+     * @ORM\Column(name="invoice_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idInvoice;
+    private $invoiceId;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="PAY_DATE", type="date", nullable=true)
+     * @ORM\Column(name="pay_date", type="datetime", nullable=true)
      */
     private $payDate;
 
@@ -33,14 +33,14 @@ class Invoice
      *
      * @ORM\ManyToOne(targetEntity="Status")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_STATUS", referencedColumnName="ID_STATUS")
+     *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      * })
      */
-    private $idStatus;
+    private $status;
 
-    public function getIdInvoice(): ?int
+    public function getInvoiceId(): ?int
     {
-        return $this->idInvoice;
+        return $this->invoiceId;
     }
 
     public function getPayDate(): ?\DateTimeInterface
@@ -55,14 +55,14 @@ class Invoice
         return $this;
     }
 
-    public function getIdStatus(): ?Status
+    public function getStatus(): ?Status
     {
-        return $this->idStatus;
+        return $this->status;
     }
 
-    public function setIdStatus(?Status $idStatus): self
+    public function setStatus(?Status $status): self
     {
-        $this->idStatus = $idStatus;
+        $this->status = $status;
 
         return $this;
     }

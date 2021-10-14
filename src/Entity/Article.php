@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="I_FK_ARTICLE_BRAND", columns={"ID_BRAND"}), @ORM\Index(name="I_FK_ARTICLE_CATEGORIE", columns={"ID_CATEGORIE"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="I_FK_ARTICLE_BRAND", columns={"brand_id"}), @ORM\Index(name="I_FK_ARTICLE_CATEGORIE", columns={"category_id"})})
  * @ORM\Entity
  */
 class Article
@@ -17,86 +17,86 @@ class Article
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_ARTICLE", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idArticle;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="NAME", type="string", length=128, nullable=false)
+     * @ORM\Column(name="name", type="string", length=64, nullable=false)
      */
     private $name;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="PRICE", type="integer", nullable=true)
+     * @ORM\Column(name="price", type="integer", nullable=true)
      */
     private $price;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="QUANTITY", type="integer", nullable=true)
+     * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="IS_ACTIVE", type="boolean", nullable=true)
+     * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
     private $isActive;
 
     /**
-     * @var \Categorie
+     * @var \Category
      *
-     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_CATEGORIE", referencedColumnName="ID_CATEGORIE")
+     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
      */
-    private $idCategorie;
+    private $category;
 
     /**
      * @var \Brand
      *
      * @ORM\ManyToOne(targetEntity="Brand")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ID_BRAND", referencedColumnName="ID_BRAND")
+     *   @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
      * })
      */
-    private $idBrand;
+    private $brand;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="idArticle")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="article")
      * @ORM\JoinTable(name="review",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="ID_ARTICLE", referencedColumnName="ID_ARTICLE")
+     *     @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="ID_USER", referencedColumnName="ID_USER")
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $idUser;
+    private $user;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idUser = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getIdArticle(): ?int
+    public function getId(): ?int
     {
-        return $this->idArticle;
+        return $this->id;
     }
 
     public function getName(): ?string
@@ -147,26 +147,26 @@ class Article
         return $this;
     }
 
-    public function getIdCategorie(): ?Categorie
+    public function getCategory(): ?Category
     {
-        return $this->idCategorie;
+        return $this->category;
     }
 
-    public function setIdCategorie(?Categorie $idCategorie): self
+    public function setCategory(?Category $category): self
     {
-        $this->idCategorie = $idCategorie;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getIdBrand(): ?Brand
+    public function getBrand(): ?Brand
     {
-        return $this->idBrand;
+        return $this->brand;
     }
 
-    public function setIdBrand(?Brand $idBrand): self
+    public function setBrand(?Brand $brand): self
     {
-        $this->idBrand = $idBrand;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -174,23 +174,23 @@ class Article
     /**
      * @return Collection|User[]
      */
-    public function getIdUser(): Collection
+    public function getUser(): Collection
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function addIdUser(User $idUser): self
+    public function addUser(User $user): self
     {
-        if (!$this->idUser->contains($idUser)) {
-            $this->idUser[] = $idUser;
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
         }
 
         return $this;
     }
 
-    public function removeIdUser(User $idUser): self
+    public function removeUser(User $user): self
     {
-        $this->idUser->removeElement($idUser);
+        $this->user->removeElement($user);
 
         return $this;
     }

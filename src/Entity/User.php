@@ -17,65 +17,65 @@ class User
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_USER", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idUser;
+    private $id;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="LAST_NAME", type="string", length=128, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=128, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FIRST_NAME", type="string", length=128, nullable=true)
+     * @ORM\Column(name="fist_name", type="string", length=128, nullable=true)
      */
-    private $firstName;
+    private $fistName;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="EMAIL", type="string", length=128, nullable=true)
+     * @ORM\Column(name="email", type="string", length=128, nullable=true)
      */
     private $email;
 
     /**
      * @var json|null
      *
-     * @ORM\Column(name="ROLES", type="json", nullable=true)
+     * @ORM\Column(name="roles", type="json", nullable=true)
      */
     private $roles;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="PASSWORD", type="string", length=128, nullable=true)
+     * @ORM\Column(name="password", type="string", length=128, nullable=true)
      */
     private $password;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="idUser")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="user")
      */
-    private $idArticle;
+    private $article;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idArticle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getIdUser(): ?int
+    public function getId(): ?int
     {
-        return $this->idUser;
+        return $this->id;
     }
 
     public function getLastName(): ?string
@@ -90,14 +90,14 @@ class User
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFistName(): ?string
     {
-        return $this->firstName;
+        return $this->fistName;
     }
 
-    public function setFirstName(?string $firstName): self
+    public function setFistName(?string $fistName): self
     {
-        $this->firstName = $firstName;
+        $this->fistName = $fistName;
 
         return $this;
     }
@@ -141,25 +141,25 @@ class User
     /**
      * @return Collection|Article[]
      */
-    public function getIdArticle(): Collection
+    public function getArticle(): Collection
     {
-        return $this->idArticle;
+        return $this->article;
     }
 
-    public function addIdArticle(Article $idArticle): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->idArticle->contains($idArticle)) {
-            $this->idArticle[] = $idArticle;
-            $idArticle->addIdUser($this);
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
+            $article->addUser($this);
         }
 
         return $this;
     }
 
-    public function removeIdArticle(Article $idArticle): self
+    public function removeArticle(Article $article): self
     {
-        if ($this->idArticle->removeElement($idArticle)) {
-            $idArticle->removeIdUser($this);
+        if ($this->article->removeElement($article)) {
+            $article->removeUser($this);
         }
 
         return $this;
