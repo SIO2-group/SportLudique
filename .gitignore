@@ -2,6 +2,7 @@
 .vscode
 .vs
 db
+*.bak
 
 ###> symfony/framework-bundle ###
 .env*
