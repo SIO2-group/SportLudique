@@ -1,5 +1,6 @@
 name: Full CI process for Symfony 5
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
