@@ -9,12 +9,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="user")
+ * @ORM\Entity
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -25,9 +28,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @var string|null
+     * @ORM\Column(name="last_name", type="string", length=128, nullable=true)
      */
-    private $roles = [];
+    private $lastName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="fist_name", type="string", length=128, nullable=true)
+     */
+    private $fistName;
+
+    /**
+     * @ORM\Column(type="json|null")
+     * @ORM\Column(name="roles", type="json", nullable=true)
+     */
+    private $roles;
 
     /**
      * @var string The hashed password
@@ -35,9 +52,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="user")
+     */
+    private $article;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFistName(): ?string
+    {
+        return $this->fistName;
+    }
+
+    public function setFistName(?string $fistName): self
+    {
+        $this->fistName = $fistName;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -45,7 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
