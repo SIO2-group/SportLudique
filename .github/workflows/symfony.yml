@@ -28,8 +28,7 @@ jobs:
         options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health" --health-interval=10s --health-timeout=5s --health-retries=10
     strategy:
       fail-fast: true
-      matrix:
-        php-versions: ['7.4', '8.0']
+      php-version: ['7.3.30']
     steps:
       # —— Check Elasticsearch 🔎 ——————————————————————————————————————————————
       - name: Check the Elasticsearch connection from runner host
