@@ -1,4 +1,6 @@
 {
+    "name": "sio2group/sport_ludique",
+    "description": "A sport e-commerce website",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
