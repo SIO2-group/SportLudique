@@ -28,7 +28,7 @@ jobs:
       - name: Prepare Symfony Application
         run: |
           touch .env
-          echo "APP_ENV=dev\nAPP_SECRET=13245\nDATABASE_URL='mysql://root@127.0.0.1:3306/sport_ludique?serverVersion=5.7" > .env
+          echo "APP_ENV=dev\nAPP_SECRET=13245\nDATABASE_URL='mysql://root@127.0.0.1:3306/sport_ludique?serverVersion=5.7'" > .env
 
       - name: Run Testsuite
         run: php bin/phpunit --testdox
