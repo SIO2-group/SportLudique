@@ -1,5 +1,14 @@
 # SportLudique
+
+![GitHub](https://img.shields.io/github/license/SIO2-group/SportLudique)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SIO2-group/SportLudique/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/SIO2-group/SportLudique/?branch=dev)
+[![Run phpunit testsuite](https://github.com/SIO2-group/SportLudique/actions/workflows/unittests.yml/badge.svg)](https://github.com/SIO2-group/SportLudique/actions/workflows/unittests.yml)
+![Lines of code](https://img.shields.io/tokei/lines/github/SIO2-group/SportLudique)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SIO2-group/SportLudique)
+
+
 🏄 A sport e-commerce website
+
 
 ## Contexte
 
