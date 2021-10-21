@@ -49,14 +49,11 @@ CREATE TABLE IF NOT EXISTS article
 (
     id          INT AUTO_INCREMENT
         PRIMARY KEY,
-    category_id INT         NULL,
     brand_id    INT         NULL,
     name        VARCHAR(64) NOT NULL,
     price       FLOAT       NOT NULL,
     quantity    INT         NULL,
     is_active   BOOL        NULL,
-    FOREIGN KEY fk_article_category (category_id)
-        REFERENCES category (id),
     FOREIGN KEY fk_article_brand (brand_id)
         REFERENCES brand (id)
 );
@@ -67,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `order`
     article_id INT NOT NULL,
     user_id    INT NOT NULL,
     status_id  INT NOT NULL,
-    PRIMARY KEY(invoice_id,article_id,user_id),
+    PRIMARY KEY (invoice_id, article_id, user_id),
     FOREIGN KEY fk_order_invoice (invoice_id)
         REFERENCES invoice (id),
     FOREIGN KEY fk_order_article (article_id)
@@ -85,18 +82,39 @@ CREATE TABLE IF NOT EXISTS review
     note       INT(3)        NULL,
     comment    VARCHAR(1024) NULL,
     post_date  DATETIME      NULL,
-    PRIMARY KEY(article_id, user_id),
+    PRIMARY KEY (article_id, user_id),
     FOREIGN KEY fk_review_article (article_id)
         REFERENCES article (id),
     FOREIGN KEY fk_review_user (user_id)
         REFERENCES user (id)
 );
 
+CREATE TABLE IF NOT EXISTS include
+(
+    article_id  INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (article_id, category_id),
+    FOREIGN KEY fk_include_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_include_category (category_id)
+        REFERENCES CATEGORY (id)
+);
+
+CREATE TABLE IF NOT EXISTS report
+(
+    id         INT           NOT NULL
+        PRIMARY KEY,
+    article_id INT           NOT NULL,
+    user_id    INT           NOT NULL,
+    content    VARCHAR(2048) NOT NULL,
+    FOREIGN KEY fk_report_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_report_user (user_id)
+        REFERENCES user (id)
+);
+
 CREATE INDEX i_fk_invoice_status
     ON invoice (status_id ASC);
-
-CREATE INDEX i_fk_article_categorie
-    ON article (category_id ASC);
 
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
@@ -119,3 +137,14 @@ CREATE INDEX i_fk_order_article
 CREATE INDEX i_fk_ordre_status
     ON `order` (status_id ASC);
 
+CREATE INDEX i_fk_include_article
+    ON include (article_id ASC);
+
+CREATE INDEX i_fk_include_category
+    ON include (category_id ASC);
+
+CREATE INDEX i_fk_report_article
+    ON report (article_id ASC);
+
+CREATE INDEX i_fk_report_user
+    ON report (user_id ASC);
