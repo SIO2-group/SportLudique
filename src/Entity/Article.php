@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="i_fk_article_brand", columns={"brand_id"}), @ORM\Index(name="i_fk_article_categorie", columns={"category_id"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="i_fk_article_brand", columns={"brand_id"})})
  * @ORM\Entity
  */
 class Article
@@ -52,16 +52,6 @@ class Article
     private $isActive;
 
     /**
-     * @var \Category
-     *
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     * })
-     */
-    private $category;
-
-    /**
      * @var \Brand
      *
      * @ORM\ManyToOne(targetEntity="Brand")
@@ -70,6 +60,21 @@ class Article
      * })
      */
     private $brand;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="article")
+     * @ORM\JoinTable(name="include",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $category;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -91,6 +96,7 @@ class Article
      */
     public function __construct()
     {
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -147,18 +153,6 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getBrand(): ?Brand
     {
         return $this->brand;
@@ -167,6 +161,30 @@ class Article
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -13,23 +12,20 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
-    private $email;
-
-    /**
      * @var string|null
+     *
      * @ORM\Column(name="last_name", type="string", length=128, nullable=true)
      */
     private $lastName;
@@ -42,14 +38,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $firstName;
 
     /**
-     * @ORM\Column(type="json|null")
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=128, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var array|null
+     *
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
     private $roles;
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=128, nullable=false)
      */
     private $password;
 
@@ -102,54 +107,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
+    public function getRoles(): ?array
     {
-        return (string) $this->email;
+        return $this->roles;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
+    public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -162,22 +139,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
+     * @return Collection|Article[]
      */
-    public function getSalt(): ?string
+    public function getArticle(): Collection
     {
-        return null;
+        return $this->article;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function addArticle(Article $article): self
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
+            $article->addUser($this);
+        }
+
+        return $this;
     }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->article->removeElement($article)) {
+            $article->removeUser($this);
+        }
+
+        return $this;
+    }
+
 }
