@@ -1,19 +1,24 @@
-name: PHP Composer
-
+name: Run phpunit testsuite
 on:
   [push, pull_request]
-
 jobs:
-  build:
-
+  phpunit:
     runs-on: ubuntu-latest
+    container:
+      image: mattiasgeniar/php73
 
     steps:
-    - name: Composer install
-      uses: docker://composer:1.9.1
-      with:
-        args: install
-    - name: PHPUnit testing
-      uses: docker://php:7.3
-      with:
-        args: php bin/phpunit --testdox
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Install composer dependencies
+        run: |
+          composer install --prefer-dist --no-scripts -q -o;
+
+      - name: Prepare Symfony Application
+        run: |
+          touch .env
+
+      - name: Run Testsuite
+        run: php bin/phpunit --testdox
