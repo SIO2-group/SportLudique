@@ -13,12 +13,10 @@ jobs:
           fetch-depth: 1
 
       - name: Install composer dependencies
-        run: |
-          composer install --prefer-dist --no-scripts -q -o;
+        run: composer install --prefer-dist --no-scripts -q -o;
 
       - name: Prepare Symfony Application
-        run: |
-          touch .env
+        run: touch .env
 
       - name: Run Testsuite
         run: php bin/phpunit --testdox
