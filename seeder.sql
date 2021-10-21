@@ -3,6 +3,13 @@ DROP DATABASE IF EXISTS sport_ludique;
 CREATE DATABASE IF NOT EXISTS sport_ludique;
 USE sport_ludique;
 
+CREATE TABLE IF NOT EXISTS status
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(64) NULL
+);
+
 CREATE TABLE IF NOT EXISTS invoice
 (
     id        INT AUTO_INCREMENT
@@ -31,6 +38,13 @@ CREATE TABLE IF NOT EXISTS category
     name VARCHAR(64) NULL
 );
 
+CREATE TABLE IF NOT EXISTS brand
+(
+    id   INT AUTO_INCREMENT
+        PRIMARY KEY,
+    name VARCHAR(64) NULL
+);
+
 CREATE TABLE IF NOT EXISTS article
 (
     id          INT AUTO_INCREMENT
@@ -47,29 +61,13 @@ CREATE TABLE IF NOT EXISTS article
         REFERENCES brand (id)
 );
 
-CREATE TABLE IF NOT EXISTS brand
-(
-    id   INT AUTO_INCREMENT
-        PRIMARY KEY,
-    name VARCHAR(64) NULL
-);
-
-CREATE TABLE IF NOT EXISTS status
-(
-    id    INT AUTO_INCREMENT
-        PRIMARY KEY,
-    label VARCHAR(64) NULL
-);
-
 CREATE TABLE IF NOT EXISTS `order`
 (
-    invoice_id INT NOT NULL
-        PRIMARY KEY,
-    article_id INT NOT NULL
-        PRIMARY KEY,
-    user_id    INT NOT NULL
-        PRIMARY KEY,
+    invoice_id INT NOT NULL,
+    article_id INT NOT NULL,
+    user_id    INT NOT NULL,
     status_id  INT NOT NULL,
+    PRIMARY KEY(invoice_id,article_id,user_id),
     FOREIGN KEY fk_order_invoice (invoice_id)
         REFERENCES invoice (id),
     FOREIGN KEY fk_order_article (article_id)
@@ -82,13 +80,12 @@ CREATE TABLE IF NOT EXISTS `order`
 
 CREATE TABLE IF NOT EXISTS review
 (
-    article_id INT           NULL
-        PRIMARY KEY,
-    user_id    INT           NULL
-        PRIMARY KEY,
+    article_id INT           NOT NULL,
+    user_id    INT           NOT NULL,
     note       INT(3)        NULL,
     comment    VARCHAR(1024) NULL,
     post_date  DATETIME      NULL,
+    PRIMARY KEY(article_id, user_id),
     FOREIGN KEY fk_review_article (article_id)
         REFERENCES article (id),
     FOREIGN KEY fk_review_user (user_id)
