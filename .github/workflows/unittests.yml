@@ -25,9 +25,6 @@ jobs:
       - name: Install composer dependencies
         run: composer install --prefer-dist --no-scripts -q -o;
 
-      - name: Checking for symfony requirements
-        run: symfony check:requirements
-
       - name: Prepare Symfony Application
         run: |
           touch .env
