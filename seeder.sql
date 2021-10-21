@@ -47,13 +47,14 @@ CREATE TABLE IF NOT EXISTS brand
 
 CREATE TABLE IF NOT EXISTS article
 (
-    id          INT AUTO_INCREMENT
+    id        INT AUTO_INCREMENT
         PRIMARY KEY,
-    brand_id    INT         NULL,
-    name        VARCHAR(64) NOT NULL,
-    price       FLOAT       NOT NULL,
-    quantity    INT         NULL,
-    is_active   BOOL        NULL,
+    brand_id  INT          NULL,
+    name      VARCHAR(64)  NOT NULL,
+    price     FLOAT        NOT NULL,
+    quantity  INT          NULL,
+    path      VARCHAR(255) NULL,
+    is_active BOOL         NULL,
     FOREIGN KEY fk_article_brand (brand_id)
         REFERENCES brand (id)
 );
