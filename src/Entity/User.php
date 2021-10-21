@@ -8,7 +8,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * User
+ *
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
@@ -36,9 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="fist_name", type="string", length=128, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=128, nullable=true)
      */
-    private $fistName;
+    private $firstName;
 
     /**
      * @ORM\Column(type="json|null")
@@ -84,14 +85,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFistName(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->fistName;
+        return $this->firstName;
     }
 
-    public function setFistName(?string $fistName): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->fistName = $fistName;
+        $this->firstName = $firstName;
 
         return $this;
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Order
  *
- * @ORM\Table(name="order", indexes={@ORM\Index(name="I_FK_ORDER_ARTICLE", columns={"article_id"}), @ORM\Index(name="I_FK_ORDER_INVOICE", columns={"invoice_id"}), @ORM\Index(name="I_FK_ORDER_USER", columns={"user_id"})})
+ * @ORM\Table(name="order", indexes={@ORM\Index(name="i_fk_order_user", columns={"user_id"}), @ORM\Index(name="i_fk_ordre_status", columns={"status_id"}), @ORM\Index(name="i_fk_order_invoice", columns={"invoice_id"}), @ORM\Index(name="i_fk_order_article", columns={"article_id"})})
  * @ORM\Entity
  */
 class Order
@@ -19,7 +19,7 @@ class Order
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Invoice")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="invoice_id", referencedColumnName="invoice_id")
+     *   @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
      * })
      */
     private $invoice;
@@ -47,6 +47,16 @@ class Order
      * })
      */
     private $user;
+
+    /**
+     * @var \Status
+     *
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="status_id", referencedColumnName="id")
+     * })
+     */
+    private $status;
 
     public function getInvoice(): ?Invoice
     {
@@ -80,6 +90,18 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

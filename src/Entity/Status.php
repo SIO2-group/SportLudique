@@ -24,7 +24,7 @@ class Status
     /**
      * @var string|null
      *
-     * @ORM\Column(name="label", type="string", length=128, nullable=true)
+     * @ORM\Column(name="label", type="string", length=64, nullable=true)
      */
     private $label;
 

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Invoice
  *
- * @ORM\Table(name="invoice", indexes={@ORM\Index(name="I_FK_INVOICE_STATUS", columns={"status_id"})})
+ * @ORM\Table(name="invoice", indexes={@ORM\Index(name="i_fk_invoice_status", columns={"status_id"})})
  * @ORM\Entity
  */
 class Invoice
@@ -15,11 +15,11 @@ class Invoice
     /**
      * @var int
      *
-     * @ORM\Column(name="invoice_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $invoiceId;
+    private $id;
 
     /**
      * @var \DateTime|null
@@ -38,9 +38,9 @@ class Invoice
      */
     private $status;
 
-    public function getInvoiceId(): ?int
+    public function getId(): ?int
     {
-        return $this->invoiceId;
+        return $this->id;
     }
 
     public function getPayDate(): ?\DateTimeInterface
