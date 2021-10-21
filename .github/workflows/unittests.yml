@@ -1,0 +1,34 @@
+name: Run phpunit testsuite
+on:
+  [push, pull_request]
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    services:
+      # https://docs.docker.com/samples/library/mysql/
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+
+    container:
+      image: mattiasgeniar/php73
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Install composer dependencies
+        run: composer install --prefer-dist --no-scripts -q -o;
+
+      - name: Prepare Symfony Application
+        run: |
+          touch .env
+          echo "APP_ENV=dev\nAPP_SECRET=13245\nDATABASE_URL='mysql://root@127.0.0.1:3306/sport_ludique?serverVersion=5.7'" > .env
+
+      - name: Run Testsuite
+        run: php bin/phpunit --testdox
