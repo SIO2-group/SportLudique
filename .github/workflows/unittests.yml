@@ -1,4 +1,4 @@
-name: Run phpunit testsuite
+name: unitests
 on:
   [push, pull_request]
 jobs:
