@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Article
  *
- * @ORM\Table(name="article", indexes={@ORM\Index(name="I_FK_ARTICLE_BRAND", columns={"brand_id"}), @ORM\Index(name="I_FK_ARTICLE_CATEGORIE", columns={"category_id"})})
+ * @ORM\Table(name="article", indexes={@ORM\Index(name="i_fk_article_brand", columns={"brand_id"}), @ORM\Index(name="i_fk_article_categorie", columns={"category_id"})})
  * @ORM\Entity
  */
 class Article
@@ -31,9 +31,9 @@ class Article
     private $name;
 
     /**
-     * @var int|null
+     * @var float
      *
-     * @ORM\Column(name="price", type="integer", nullable=true)
+     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=false)
      */
     private $price;
 
@@ -111,12 +111,12 @@ class Article
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(?int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
