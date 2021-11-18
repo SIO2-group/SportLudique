@@ -7,18 +7,19 @@ CREATE TABLE IF NOT EXISTS status
 (
     id    INT AUTO_INCREMENT
         PRIMARY KEY,
-    label VARCHAR(64) NULL
+    label VARCHAR(64) NOT NULL
 );
+
+# BUILDING...
 
 CREATE TABLE IF NOT EXISTS user
 (
-    id         INT AUTO_INCREMENT
+    id       INT AUTO_INCREMENT
         PRIMARY KEY,
-    last_name  VARCHAR(128) NULL,
-    first_name VARCHAR(128) NULL,
-    email      VARCHAR(128) NOT NULL,
-    roles      JSON         NULL,
-    password   VARCHAR(128) NOT NULL
+    name     VARCHAR(64)  NOT NULL,
+    email    VARCHAR(128) NULL,
+    roles    JSON         NULL,
+    password VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS category
@@ -33,16 +34,18 @@ CREATE TABLE IF NOT EXISTS brand
     id        INT AUTO_INCREMENT
         PRIMARY KEY,
     name      VARCHAR(64)  NOT NULL,
-    icon_path VARCHAR(255) NOT NULL
+    icon_path VARCHAR(255) NULL
 );
 
 CREATE TABLE IF NOT EXISTS article
 (
     id         INT AUTO_INCREMENT
         PRIMARY KEY,
-    brand_id   INT          NULL,
+    color_id   INT          NOT NULL,
+    size_id    INT          NOT NULL,
+    brand_id   INT          NOT NULL,
     name       VARCHAR(64)  NOT NULL,
-    price      FLOAT        NOT NULL,
+    price      FLOAT        NULL,
     quantity   INT          NULL,
     image_path VARCHAR(255) NULL,
     is_active  BOOL         NULL,
@@ -112,6 +115,20 @@ CREATE TABLE IF NOT EXISTS contain
         REFERENCES `order` (id)
 );
 
+CREATE TABLE IF NOT EXISTS color
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS size
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(64) NOT NULL
+);
+
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
 
@@ -144,3 +161,9 @@ CREATE INDEX i_fk_contain_article
 
 CREATE INDEX i_fk_contain_order
     ON contain (order_id ASC);
+
+CREATE  INDEX i_fk_article_color
+    ON article (color_id ASC);
+
+CREATE  INDEX i_fk_article_size
+    ON article (size_id ASC);
