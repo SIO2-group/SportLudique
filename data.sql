@@ -22,16 +22,16 @@ INSERT INTO sport_ludique.category (id, name) VALUES (13, 'cyclisme');
 INSERT INTO sport_ludique.category (id, name) VALUES (14, 'trail');
 INSERT INTO sport_ludique.category (id, name) VALUES (15, 'tennis');
 
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (1, 1, 'Maillot de supporteur Football Homme PSG MNK DF STAD JSY SS AW', 89.99, 26, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (2, 1, 'Echarpe de football Unisexe NK STRKE SNOOD Noir', 19.99, 39, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (3, 1, 'Vêtements de football Enfant PSG LKNK DF STRK TRK SUIT K AW Noir', 64.99, 17, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (4, 1, 'Pantalon de supporteur Homme PSG MNK DF STADIUM SHORT 3R', 39.99, 71, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (5, 2, 'Pantalon homme JUVE TR PNT Noir', 55, 82, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (6, 3, 'Maillot de football Homme OM AWAY SHIRT REP SPO Bleu', 90, 5, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (7, 3, 'Tongs Homme EPIC FLIP V2 Noir', 20, 92, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (8, 2, 'Maillot de bain homme FIT 3SECOND BX Bleu', 29.95, 128, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (9, 2, 'Claquettes Unisexe ADILETTE AQUA Noir', 20, 118, 'todo', 0);
-INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (10, 4, 'Lunettes de natation homme ZOOM X-FIT Noir', 12, 105, 'todo', 0);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (1, 1, 'Maillot de supporteur Football Homme PSG MNK DF STAD JSY SS AW', 89.99, 26, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (2, 1, 'Echarpe de football Unisexe NK STRKE SNOOD Noir', 19.99, 39, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (3, 1, 'Vêtements de football Enfant PSG LKNK DF STRK TRK SUIT K AW Noir', 64.99, 17, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (4, 1, 'Pantalon de supporteur Homme PSG MNK DF STADIUM SHORT 3R', 39.99, 71, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (5, 2, 'Pantalon homme JUVE TR PNT Noir', 55, 82, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (6, 3, 'Maillot de football Homme OM AWAY SHIRT REP SPO Bleu', 90, 5, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (7, 3, 'Tongs Homme EPIC FLIP V2 Noir', 20, 92, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (8, 2, 'Maillot de bain homme FIT 3SECOND BX Bleu', 29.95, 128, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (9, 2, 'Claquettes Unisexe ADILETTE AQUA Noir', 20, 118, 'todo', 1);
+INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (10, 4, 'Lunettes de natation homme ZOOM X-FIT Noir', 12, 105, 'todo', 1);
 INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (11, 2, 'Maillot de bain homme FIT BX BOS Noir', 23, 206, 'todo', 0);
 INSERT INTO sport_ludique.article (id, brand_id, name, price, quantity, image_path, is_active)VALUES (12, 4, 'Maillot de bain femme W VIBRANCY SWIM PRO BACK ONE PIECE Noir', 40, 152, 'todo', 0);
 
