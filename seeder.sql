@@ -10,16 +10,6 @@ CREATE TABLE IF NOT EXISTS status
     label VARCHAR(64) NULL
 );
 
-CREATE TABLE IF NOT EXISTS invoice
-(
-    id        INT AUTO_INCREMENT
-        PRIMARY KEY,
-    pay_date  DATETIME NULL,
-    status_id INT      NULL,
-    FOREIGN KEY fk_invoice_status (status_id)
-        REFERENCES status (id)
-);
-
 CREATE TABLE IF NOT EXISTS user
 (
     id         INT AUTO_INCREMENT
@@ -61,18 +51,14 @@ CREATE TABLE IF NOT EXISTS article
 
 CREATE TABLE IF NOT EXISTS `order`
 (
-    invoice_id INT NOT NULL,
-    article_id INT NOT NULL,
+    id         INT AUTO_INCREMENT
+        PRIMARY KEY,
     user_id    INT NOT NULL,
     status_id  INT NOT NULL,
-    PRIMARY KEY (invoice_id, article_id, user_id),
-    FOREIGN KEY fk_order_invoice (invoice_id)
-        REFERENCES invoice (id),
-    FOREIGN KEY fk_order_article (article_id)
-        REFERENCES article (id),
+    pay_date DATETIME NULL,
     FOREIGN KEY fk_order_user (user_id)
         REFERENCES user (id),
-    FOREIGN KEY fk_ordre_status (status_id)
+    FOREIGN KEY fk_order_status (status_id)
         REFERENCES status (id)
 );
 
@@ -114,14 +100,19 @@ CREATE TABLE IF NOT EXISTS report
         REFERENCES user (id)
 );
 
-CREATE INDEX i_fk_invoice_status
-    ON invoice (status_id ASC);
+CREATE TABLE IF NOT EXISTS contain
+(
+    article_id INT NOT NULL,
+    order_id INT NOT NULL,
+    PRIMARY KEY (article_id,order_id),
+    FOREIGN KEY fk_contain_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_contain_order (order_id)
+        REFERENCES `order` (id)
+);
 
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
-
-CREATE INDEX i_fk_order_invoice
-    ON `order` (invoice_id ASC);
 
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);
@@ -132,10 +123,7 @@ CREATE INDEX i_fk_review_user
 CREATE INDEX i_fk_review_article
     ON review (article_id ASC);
 
-CREATE INDEX i_fk_order_article
-    ON `order` (article_id ASC);
-
-CREATE INDEX i_fk_ordre_status
+CREATE INDEX i_fk_order_status
     ON `order` (status_id ASC);
 
 CREATE INDEX i_fk_include_article
@@ -149,3 +137,9 @@ CREATE INDEX i_fk_report_article
 
 CREATE INDEX i_fk_report_user
     ON report (user_id ASC);
+
+CREATE INDEX i_fk_contain_article
+    ON contain (article_id ASC);
+
+CREATE INDEX i_fk_contain_order
+    ON contain (order_id ASC);
