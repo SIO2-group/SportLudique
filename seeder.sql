@@ -30,32 +30,33 @@ CREATE TABLE IF NOT EXISTS category
 
 CREATE TABLE IF NOT EXISTS brand
 (
-    id   INT AUTO_INCREMENT
+    id        INT AUTO_INCREMENT
         PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
+    name      VARCHAR(64)  NOT NULL,
+    icon_path VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS article
 (
-    id        INT AUTO_INCREMENT
+    id         INT AUTO_INCREMENT
         PRIMARY KEY,
-    brand_id  INT          NULL,
-    name      VARCHAR(64)  NOT NULL,
-    price     FLOAT        NOT NULL,
-    quantity  INT          NULL,
-    path      VARCHAR(255) NULL,
-    is_active BOOL         NULL,
+    brand_id   INT          NULL,
+    name       VARCHAR(64)  NOT NULL,
+    price      FLOAT        NOT NULL,
+    quantity   INT          NULL,
+    image_path VARCHAR(255) NULL,
+    is_active  BOOL         NULL,
     FOREIGN KEY fk_article_brand (brand_id)
         REFERENCES brand (id)
 );
 
 CREATE TABLE IF NOT EXISTS `order`
 (
-    id         INT AUTO_INCREMENT
+    id        INT AUTO_INCREMENT
         PRIMARY KEY,
-    user_id    INT NOT NULL,
-    status_id  INT NOT NULL,
-    pay_date DATETIME NULL,
+    user_id   INT      NOT NULL,
+    status_id INT      NOT NULL,
+    pay_date  DATETIME NULL,
     FOREIGN KEY fk_order_user (user_id)
         REFERENCES user (id),
     FOREIGN KEY fk_order_status (status_id)
@@ -103,8 +104,8 @@ CREATE TABLE IF NOT EXISTS report
 CREATE TABLE IF NOT EXISTS contain
 (
     article_id INT NOT NULL,
-    order_id INT NOT NULL,
-    PRIMARY KEY (article_id,order_id),
+    order_id   INT NOT NULL,
+    PRIMARY KEY (article_id, order_id),
     FOREIGN KEY fk_contain_article (article_id)
         REFERENCES article (id),
     FOREIGN KEY fk_contain_order (order_id)
