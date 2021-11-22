@@ -10,8 +10,6 @@ CREATE TABLE IF NOT EXISTS status
     label VARCHAR(64) NOT NULL
 );
 
-# BUILDING...
-
 CREATE TABLE IF NOT EXISTS user
 (
     id       INT AUTO_INCREMENT
@@ -37,6 +35,20 @@ CREATE TABLE IF NOT EXISTS brand
     icon_path VARCHAR(255) NULL
 );
 
+CREATE TABLE IF NOT EXISTS color
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS size
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(64) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS article
 (
     id         INT AUTO_INCREMENT
@@ -50,7 +62,11 @@ CREATE TABLE IF NOT EXISTS article
     image_path VARCHAR(255) NULL,
     is_active  BOOL         NULL,
     FOREIGN KEY fk_article_brand (brand_id)
-        REFERENCES brand (id)
+        REFERENCES brand (id),
+    FOREIGN KEY fk_article_color (color_id)
+        REFERENCES color (id),
+    FOREIGN KEY fk_article_size (size_id)
+        REFERENCES size (id)
 );
 
 CREATE TABLE IF NOT EXISTS `order`
@@ -115,34 +131,26 @@ CREATE TABLE IF NOT EXISTS contain
         REFERENCES `order` (id)
 );
 
-CREATE TABLE IF NOT EXISTS color
-(
-    id    INT AUTO_INCREMENT
-        PRIMARY KEY,
-    label VARCHAR(64) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS size
-(
-    id    INT AUTO_INCREMENT
-        PRIMARY KEY,
-    label VARCHAR(64) NOT NULL
-);
-
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
 
+CREATE  INDEX i_fk_article_color
+    ON article (color_id ASC);
+
+CREATE  INDEX i_fk_article_size
+    ON article (size_id ASC);
+
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);
+
+CREATE INDEX i_fk_order_status
+    ON `order` (status_id ASC);
 
 CREATE INDEX i_fk_review_user
     ON review (user_id ASC);
 
 CREATE INDEX i_fk_review_article
     ON review (article_id ASC);
-
-CREATE INDEX i_fk_order_status
-    ON `order` (status_id ASC);
 
 CREATE INDEX i_fk_include_article
     ON include (article_id ASC);
@@ -161,9 +169,3 @@ CREATE INDEX i_fk_contain_article
 
 CREATE INDEX i_fk_contain_order
     ON contain (order_id ASC);
-
-CREATE  INDEX i_fk_article_color
-    ON article (color_id ASC);
-
-CREATE  INDEX i_fk_article_size
-    ON article (size_id ASC);
