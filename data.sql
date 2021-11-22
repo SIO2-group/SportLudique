@@ -97,11 +97,16 @@ INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (1, 'Je
 INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (2, 'BernieCORNEIL', 'bernie.corneil@gmail.com', '{"ROLES": "ROLES_USER"}', 'c0rn31l');
 INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (3, 'MichelBOILO', 'michel.boilo@gmail.com', '{"ROLES": "ROLES_ADMIN"}', 'm1ch3l');
 INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (4, 'RemyVOLTERRE', 'remy.volterre@gmail.com', '{"ROLES": "ROLES_USER"}', 'v0lt1r');
-INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (5, 'jacques_mau28', 'jacques.mauliere@gmail.com', null, 'm0l13r');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (5, 'JacquesMAULIERE', 'jawcques.mauliere@gmail.com', '{"ROLES": "ROLES_USER"}', 'm0l13r');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (6, 'jeankev28', 'jeankev28@gmail.com', null , 'j1ank3v28');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (7, 'café_random', 'café.random@gmail.com', null , 'kf1r4nd0m');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (8, 'alibambam3815', 'alibambam@gmail.com', null , 'al1bamb4m28');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (9, 'sigma', '@gmail.com', null , '@@nordvpn');
+INSERT INTO sport_ludique.user (id, name, email, roles, password) VALUES (10, 'reyks', '@gmail.com', null , 'r3yksg@m1ng');
 
-INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (2, 4, 1, 'nul', '2020-01-01 12:17:29');
-INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (3, 2, 0, 'trop nul !', '2021-09-11 10:10:24');
-INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (6, 2, 3, 'j''aime bien', '2021-10-21 17:42:02');
-INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (7, 4, 5, 'super j''adore', '2019-09-03 20:20:46');
-INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (10, 2, 4, 'cool', '2020-04-28 11:44:12');
+INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (2, 8, 1, 'nul', '2020-01-01 12:17:29');
+INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (3, 6, 0, 'trop nul !', '2021-09-11 10:10:24');
+INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (6, 9, 3, 'j''aime bien', '2021-10-21 17:42:02');
+INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (7, 10, 5, 'super j''adore', '2019-09-03 20:20:46');
+INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (10, 7, 4, 'cool', '2020-04-28 11:44:12');
 
