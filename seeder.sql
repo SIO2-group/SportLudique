@@ -27,6 +27,12 @@ CREATE TABLE IF NOT EXISTS category
     name VARCHAR(64) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS file
+(
+    id INT AUTO_INCREMENT
+        PRIMARY KEY
+);
+
 CREATE TABLE IF NOT EXISTS brand
 (
     id      INT AUTO_INCREMENT
@@ -168,12 +174,6 @@ CREATE TABLE IF NOT EXISTS localize
         REFERENCES file (id),
     FOREIGN KEY fk_localize_path (path_id)
         REFERENCES path (id)
-);
-
-CREATE TABLE IF NOT EXISTS file
-(
-    id INT AUTO_INCREMENT
-        PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS notifications
