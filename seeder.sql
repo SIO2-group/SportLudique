@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS include
 
 CREATE TABLE IF NOT EXISTS report
 (
-    id         INT           NOT NULL
+    id         INT AUTO_INCREMENT
         PRIMARY KEY,
     article_id INT           NOT NULL,
     user_id    INT           NOT NULL,
@@ -122,8 +122,8 @@ CREATE TABLE IF NOT EXISTS report
 
 CREATE TABLE IF NOT EXISTS contain
 (
-    article_id INT NOT NULL,
     order_id   INT NOT NULL,
+    article_id INT NOT NULL,
     PRIMARY KEY (article_id, order_id),
     FOREIGN KEY fk_contain_article (article_id)
         REFERENCES article (id),
@@ -134,10 +134,10 @@ CREATE TABLE IF NOT EXISTS contain
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
 
-CREATE  INDEX i_fk_article_color
+CREATE INDEX i_fk_article_color
     ON article (color_id ASC);
 
-CREATE  INDEX i_fk_article_size
+CREATE INDEX i_fk_article_size
     ON article (size_id ASC);
 
 CREATE INDEX i_fk_order_user
