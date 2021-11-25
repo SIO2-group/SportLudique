@@ -12,12 +12,13 @@ CREATE TABLE IF NOT EXISTS status
 
 CREATE TABLE IF NOT EXISTS user
 (
-    id       INT AUTO_INCREMENT
+    id            INT AUTO_INCREMENT
         PRIMARY KEY,
-    name     VARCHAR(64)  NOT NULL,
-    email    VARCHAR(128) NULL,
-    roles    JSON         NULL,
-    password VARCHAR(128) NOT NULL
+    name          VARCHAR(64)  NOT NULL,
+    email         VARCHAR(128) NULL,
+    password      VARCHAR(128) NOT NULL,
+    creation_date DATETIME     NOT NULL,
+    roles         JSON         NULL
 );
 
 CREATE TABLE IF NOT EXISTS category
@@ -178,7 +179,7 @@ CREATE TABLE IF NOT EXISTS localize
 
 CREATE TABLE IF NOT EXISTS notifications
 (
-    id      INT          NOT NULL
+    id      INT AUTO_INCREMENT
         PRIMARY KEY,
     content VARCHAR(255) NOT NULL
 );
@@ -192,8 +193,9 @@ CREATE TABLE IF NOT EXISTS favorite
 
 CREATE TABLE IF NOT EXISTS notify
 (
-    user_id  INT NOT NULL,
-    notif_id INT NOT NULL,
+    user_id   INT      NOT NULL,
+    notif_id  INT      NOT NULL,
+    read_date DATETIME NULL,
     PRIMARY KEY (user_id, notif_id),
     FOREIGN KEY fk_notify_user (user_id)
         REFERENCES user (id),
@@ -264,8 +266,8 @@ CREATE INDEX i_fk_favorite_article
 CREATE INDEX i_fk_favorite_user
     ON favorite (user_id ASC);
 
-CREATE  INDEX i_fk_notify_user
+CREATE INDEX i_fk_notify_user
     ON notify (user_id ASC);
 
-CREATE  INDEX i_fk_notify_notifications
+CREATE INDEX i_fk_notify_notifications
     ON notify (notif_id ASC);
