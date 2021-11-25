@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS path
 (
     id   INT AUTO_INCREMENT
         PRIMARY KEY,
-    LINK VARCHAR(255) NOT NULL
+    link VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS measure
@@ -174,6 +174,27 @@ CREATE TABLE IF NOT EXISTS file
 (
     id INT AUTO_INCREMENT
         PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS notifications
+(
+    id      INT          NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS favorite
+(
+    article_id INT NOT NULL,
+    user_id    INT NOT NULL,
+    PRIMARY KEY (article_id, user_id)
+);
+
+CREATE TABLE IF NOT EXISTS notify
+(
+    user_id  INT NOT NULL,
+    notif_id INT NOT NULL,
+    PRIMARY KEY (user_id, notif_id)
 );
 
 CREATE INDEX i_fk_article_brand
@@ -231,4 +252,16 @@ CREATE INDEX i_fk_localize_path
     ON localize (path_id ASC);
 
 CREATE INDEX i_fk_brand_file
-    ON BRAND (file_id ASC);
+    ON brand (file_id ASC);
+
+CREATE INDEX i_fk_favorite_article
+    ON favorite (article_id ASC);
+
+CREATE INDEX i_fk_favorite_user
+    ON favorite (user_id ASC);
+
+CREATE  INDEX i_fk_notify_user
+    ON notify (user_id ASC);
+
+CREATE  INDEX i_fk_notify_notifications
+    ON notify (notif_id ASC);
