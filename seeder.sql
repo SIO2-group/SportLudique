@@ -178,9 +178,9 @@ CREATE TABLE IF NOT EXISTS file
 
 CREATE TABLE IF NOT EXISTS notifications
 (
-    id      INT          NOT NULL,
-    content VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    id      INT          NOT NULL
+        PRIMARY KEY,
+    content VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS favorite
@@ -194,7 +194,11 @@ CREATE TABLE IF NOT EXISTS notify
 (
     user_id  INT NOT NULL,
     notif_id INT NOT NULL,
-    PRIMARY KEY (user_id, notif_id)
+    PRIMARY KEY (user_id, notif_id),
+    FOREIGN KEY fk_notify_user (user_id)
+        REFERENCES user (id),
+    FOREIGN KEY fk_notify_notifications (notif_id)
+        REFERENCES notifications (id)
 );
 
 CREATE INDEX i_fk_article_brand
