@@ -29,9 +29,12 @@ CREATE TABLE IF NOT EXISTS category
 
 CREATE TABLE IF NOT EXISTS brand
 (
-    id   INT AUTO_INCREMENT
+    id      INT AUTO_INCREMENT
         PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
+    file_id INT         NOT NULL,
+    name    VARCHAR(64) NOT NULL,
+    FOREIGN KEY fk_brand_file (file_id)
+        REFERENCES file (id)
 );
 
 CREATE TABLE IF NOT EXISTS color
@@ -53,13 +56,16 @@ CREATE TABLE IF NOT EXISTS article
     id          INT AUTO_INCREMENT
         PRIMARY KEY,
     brand_id    INT          NOT NULL,
+    file_id     INT          NOT NULL,
     name        VARCHAR(64)  NOT NULL,
     description VARCHAR(255) NULL,
     price       FLOAT        NULL,
     quantity    INT          NULL,
     is_active   BOOL         NULL,
     FOREIGN KEY fk_article_brand (brand_id)
-        REFERENCES brand (id)
+        REFERENCES brand (id),
+    FOREIGN KEY fk_article_file (file_id)
+        REFERENCES file (id)
 );
 
 CREATE TABLE IF NOT EXISTS `order`
@@ -155,20 +161,26 @@ CREATE TABLE IF NOT EXISTS colorize
 
 CREATE TABLE IF NOT EXISTS localize
 (
-    brand_id INT NOT NULL,
-    article_id INT NOT NULL,
+    file_id INT NOT NULL,
     path_id INT NOT NULL,
-    PRIMARY KEY (brand_id,article_id,path_id),
-    FOREIGN KEY fk_localize_brand (brand_id)
-        REFERENCES brand (id),
-    FOREIGN KEY fk_localize_article (article_id)
-        REFERENCES article (id),
+    PRIMARY KEY (file_id, path_id),
+    FOREIGN KEY fk_localize_file (file_id)
+        REFERENCES file (id),
     FOREIGN KEY fk_localize_path (path_id)
         REFERENCES path (id)
 );
 
+CREATE TABLE IF NOT EXISTS file
+(
+    id INT AUTO_INCREMENT
+        PRIMARY KEY
+);
+
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
+
+CREATE INDEX i_fk_article_file
+    ON ARTICLE (file_id ASC);
 
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);
@@ -206,17 +218,17 @@ CREATE INDEX i_fk_measure_article
 CREATE INDEX i_fk_measure_size
     ON measure (size_id ASC);
 
-CREATE  INDEX i_fk_colorize_color
+CREATE INDEX i_fk_colorize_color
     ON colorize (color_id ASC);
 
-CREATE  INDEX i_fk_colorize_article
+CREATE INDEX i_fk_colorize_article
     ON colorize (article_id ASC);
 
-CREATE  INDEX i_fk_localize_brand
-    ON localize (brand_id ASC);
+CREATE INDEX i_fk_localize_file
+    ON localize (file_id ASC);
 
-CREATE  INDEX i_fk_localize_article
-    ON localize (article_id ASC);
-
-CREATE  INDEX i_fk_localize_path
+CREATE INDEX i_fk_localize_path
     ON localize (path_id ASC);
+
+CREATE INDEX i_fk_brand_file
+    ON BRAND (file_id ASC);
