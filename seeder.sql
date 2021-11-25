@@ -29,10 +29,9 @@ CREATE TABLE IF NOT EXISTS category
 
 CREATE TABLE IF NOT EXISTS brand
 (
-    id        INT AUTO_INCREMENT
+    id   INT AUTO_INCREMENT
         PRIMARY KEY,
-    name      VARCHAR(64)  NOT NULL,
-    icon_path VARCHAR(255) NULL
+    name VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS color
@@ -51,22 +50,16 @@ CREATE TABLE IF NOT EXISTS size
 
 CREATE TABLE IF NOT EXISTS article
 (
-    id         INT AUTO_INCREMENT
+    id          INT AUTO_INCREMENT
         PRIMARY KEY,
-    color_id   INT          NOT NULL,
-    size_id    INT          NOT NULL,
-    brand_id   INT          NOT NULL,
-    name       VARCHAR(64)  NOT NULL,
-    price      FLOAT        NULL,
-    quantity   INT          NULL,
-    image_path VARCHAR(255) NULL,
-    is_active  BOOL         NULL,
+    brand_id    INT          NOT NULL,
+    name        VARCHAR(64)  NOT NULL,
+    description VARCHAR(255) NULL,
+    price       FLOAT        NULL,
+    quantity    INT          NULL,
+    is_active   BOOL         NULL,
     FOREIGN KEY fk_article_brand (brand_id)
-        REFERENCES brand (id),
-    FOREIGN KEY fk_article_color (color_id)
-        REFERENCES color (id),
-    FOREIGN KEY fk_article_size (size_id)
-        REFERENCES size (id)
+        REFERENCES brand (id)
 );
 
 CREATE TABLE IF NOT EXISTS `order`
@@ -104,7 +97,7 @@ CREATE TABLE IF NOT EXISTS include
     FOREIGN KEY fk_include_article (article_id)
         REFERENCES article (id),
     FOREIGN KEY fk_include_category (category_id)
-        REFERENCES CATEGORY (id)
+        REFERENCES category (id)
 );
 
 CREATE TABLE IF NOT EXISTS report
@@ -124,21 +117,58 @@ CREATE TABLE IF NOT EXISTS contain
 (
     order_id   INT NOT NULL,
     article_id INT NOT NULL,
-    PRIMARY KEY (article_id, order_id),
+    PRIMARY KEY (order_id, article_id),
     FOREIGN KEY fk_contain_article (article_id)
         REFERENCES article (id),
     FOREIGN KEY fk_contain_order (order_id)
         REFERENCES `order` (id)
 );
 
+CREATE TABLE IF NOT EXISTS path
+(
+    id   INT AUTO_INCREMENT
+        PRIMARY KEY,
+    LINK VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS measure
+(
+    article_id INT NOT NULL,
+    size_id    INT NOT NULL,
+    PRIMARY KEY (article_id, size_id),
+    FOREIGN KEY fk_measure_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_measure_size (size_id)
+        REFERENCES size (id)
+);
+
+CREATE TABLE IF NOT EXISTS colorize
+(
+    article_id INT NOT NULL,
+    color_id   INT NOT NULL,
+    PRIMARY KEY (article_id, color_id),
+    FOREIGN KEY fk_colorize_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_colorize_color (color_id)
+        REFERENCES color (id)
+);
+
+CREATE TABLE IF NOT EXISTS localize
+(
+    brand_id INT NOT NULL,
+    article_id INT NOT NULL,
+    path_id INT NOT NULL,
+    PRIMARY KEY (brand_id,article_id,path_id),
+    FOREIGN KEY fk_localize_brand (brand_id)
+        REFERENCES brand (id),
+    FOREIGN KEY fk_localize_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_localize_path (path_id)
+        REFERENCES path (id)
+);
+
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
-
-CREATE INDEX i_fk_article_color
-    ON article (color_id ASC);
-
-CREATE INDEX i_fk_article_size
-    ON article (size_id ASC);
 
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);
@@ -169,3 +199,24 @@ CREATE INDEX i_fk_contain_article
 
 CREATE INDEX i_fk_contain_order
     ON contain (order_id ASC);
+
+CREATE INDEX i_fk_measure_article
+    ON measure (article_id ASC);
+
+CREATE INDEX i_fk_measure_size
+    ON measure (size_id ASC);
+
+CREATE  INDEX i_fk_colorize_color
+    ON colorize (color_id ASC);
+
+CREATE  INDEX i_fk_colorize_article
+    ON colorize (article_id ASC);
+
+CREATE  INDEX i_fk_localize_brand
+    ON localize (brand_id ASC);
+
+CREATE  INDEX i_fk_localize_article
+    ON localize (article_id ASC);
+
+CREATE  INDEX i_fk_localize_path
+    ON localize (path_id ASC);
