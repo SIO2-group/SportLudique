@@ -168,8 +168,8 @@ CREATE TABLE IF NOT EXISTS colorize
 
 CREATE TABLE IF NOT EXISTS localize
 (
-    file_id INT NOT NULL,
     path_id INT NOT NULL,
+    file_id INT NOT NULL,
     PRIMARY KEY (file_id, path_id),
     FOREIGN KEY fk_localize_file (file_id)
         REFERENCES file (id),
