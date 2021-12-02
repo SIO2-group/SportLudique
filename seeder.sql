@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS user
 (
     id            INT AUTO_INCREMENT
         PRIMARY KEY,
+    role_id       INT          NOT NULL,
     name          VARCHAR(64)  NOT NULL,
     email         VARCHAR(128) NULL,
     password      VARCHAR(128) NOT NULL,
-    creation_date DATETIME     NOT NULL,
-    roles         JSON         NULL
+    creation_date DATETIME     NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS category
@@ -203,6 +203,28 @@ CREATE TABLE IF NOT EXISTS notify
         REFERENCES notifications (id)
 );
 
+CREATE TABLE IF NOT EXISTS group
+(
+    id   INT AUTO_INCREMENT
+        PRIMARY KEY,
+    name VARCHAR(128) NULL
+);
+
+CREATE TABLE IF NOT EXISTS role
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    LABEL VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS path
+(
+    id INT AUTO_INCREMENT
+        PRIMARY KEY,
+    file_id INT NULL,
+    link CHAR(32) NOT NULL
+);
+
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
 
@@ -271,3 +293,6 @@ CREATE INDEX i_fk_notify_user
 
 CREATE INDEX i_fk_notify_notifications
     ON notify (notif_id ASC);
+
+CREATE INDEX i_fk_user_role
+    ON user (role_id ASC);
