@@ -187,10 +187,11 @@ CREATE TABLE IF NOT EXISTS `group`
 
 CREATE TABLE IF NOT EXISTS notifications
 (
-    id        INT AUTO_INCREMENT
+    id       INT AUTO_INCREMENT
         PRIMARY KEY,
-    group_id  INT          NOT NULL,
-    content   VARCHAR(256) NOT NULL,
+    group_id INT           NOT NULL,
+    object   VARCHAR(128)  NOT NULL,
+    content  VARCHAR(2048) NOT NULL,
     FOREIGN KEY fk_notifications_group (group_id)
         REFERENCES `group` (id)
 );
