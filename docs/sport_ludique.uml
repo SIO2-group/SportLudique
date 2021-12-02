@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>DATABASE</ID>
-  <OriginalElement>d835cc23-d2b1-4ee7-8c32-0d81c868bef5.SCHEMA:sport_ludique_playground</OriginalElement>
+  <OriginalElement>ac3419b6-d9e7-4598-87f2-ce02142e7e64.SCHEMA:sport_ludique</OriginalElement>
   <nodes>
-    <node x="79.0" y="401.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.invoice</node>
-    <node x="426.0" y="394.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.category</node>
-    <node x="228.0" y="0.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.review</node>
-    <node x="34.0" y="96.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.user</node>
-    <node x="485.0" y="133.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.brand</node>
-    <node x="149.0" y="260.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.order</node>
-    <node x="310.0" y="164.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.article</node>
-    <node x="0.0" y="565.0">d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.status</node>
+    <node x="694.0177154952893" y="659.5403537673074">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.category</node>
+    <node x="146.63458850434594" y="264.1600208103963">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.order</node>
+    <node x="166.240463926894" y="670.8805358384939">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.review</node>
+    <node x="444.62908971109164" y="550.9896335386557">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.article</node>
+    <node x="48.4228940185711" y="154.62749706227964">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.status</node>
+    <node x="401.16496048622685" y="333.04298595519367">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.contain</node>
+    <node x="-153.0" y="737.8805358384939">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.doctrine_migration_versions</node>
+    <node x="0.0" y="476.14518286923385">ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.user</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.order" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.user" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.review" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.user" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.article" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.category" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.order" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.user" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.review" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.user" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.contain" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.order" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.review" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.article" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.order" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.status" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.invoice" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.order" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.review" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.article" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.invoice" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.status" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.contain" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.article" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.order" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.article" relationship="REFERENCES">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.article" target="d835cc23-d2b1-4ee7-8c32-0d81c868bef5.TABLE:sport_ludique_playground.brand" relationship="REFERENCES">
+    <edge source="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.article" target="ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.category" relationship="REFERENCES">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.8840361445783133" showDependencies="false" x="315.11499148211243" y="279.5809199318569" />
-  <SelectedNodes />
+  <settings layout="Circular" zoom="1.0" showDependencies="false" x="409.5" y="558.0" />
+  <SelectedNodes>
+    <node>ac3419b6-d9e7-4598-87f2-ce02142e7e64.TABLE:sport_ludique.category</node>
+  </SelectedNodes>
   <Categories>
     <Category>Columns</Category>
     <Category>Comments</Category>
