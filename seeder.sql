@@ -191,7 +191,6 @@ CREATE TABLE IF NOT EXISTS notifications
         PRIMARY KEY,
     group_id  INT          NOT NULL,
     content   VARCHAR(256) NOT NULL,
-    read_date DATETIME     NULL,
     FOREIGN KEY fk_notifications_group (group_id)
         REFERENCES `group` (id)
 );
