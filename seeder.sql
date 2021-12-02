@@ -217,8 +217,8 @@ CREATE TABLE IF NOT EXISTS path
 
 CREATE TABLE IF NOT EXISTS belong
 (
-    group_id INTEGER NOT NULL,
     user_id  INTEGER NOT NULL,
+    group_id INTEGER NOT NULL,
     PRIMARY KEY (group_id, user_id),
     FOREIGN KEY fk_belong_user (user_id)
         REFERENCES user (id),
