@@ -147,16 +147,19 @@ INSERT INTO sport_ludique.include (article_id, category_id) VALUES (12, 2);
 INSERT INTO sport_ludique.include (article_id, category_id) VALUES (12, 8);
 INSERT INTO sport_ludique.include (article_id, category_id) VALUES (12, 12);
 
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (1, 'LAFONTAINEJean', 'jean.lafontaine@gmail.com', 'l4f0nt4ine', '2015-01-01 10:10:10', '{"ROLES": "ROLES_ADMIN"}');
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (2, 'CORNEILBernie', 'bernie.corneil@gmail.com', 'c0rn31l', '2015-01-01 10:10:10', '{"ROLES": "ROLES_USER"}');
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (3, 'BOILOMichel', 'michel.boilo@gmail.com', 'm1ch3l', '2015-01-01 10:10:10', '{"ROLES": "ROLES_ADMIN"}');
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (4, 'VOLTERRERemy', 'remy.volterre@gmail.com', 'v0lt1r', '2015-01-01 10:10:10', '{"ROLES": "ROLES_USER"}');
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (5, 'MAULIEREJacques', 'jawcques.mauliere@gmail.com', 'm0l13r', '2015-01-01 10:10:10', '{"ROLES": "ROLES_USER"}');
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (6, 'jeanmi28', 'jeanmi28@gmail.com', 'jea4nm$28', '2021-01-04 01:00:42', null);
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (7, 'café_random', 'café.random@gmail.com', 'kf1r4nd0m', '2020-01-08 11:11:11', null);
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (8, 'alibambam3815', 'alibambam@gmail.com', 'al1bamb4m28', '2019-01-01 00:00:00', null);
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (9, 'sigma', 'sigmanificient@gmail.com', '@@nordvpn', '2019-02-10 22:22:22', null);
-INSERT INTO sport_ludique.user (id, name, email, password, creation_date, roles) VALUES (10, 'reyks', 'reyks@gmail.com', 'r3yksg@m1ng', '2019-03-09 02:02:04', null);
+INSERT INTO sport_ludique.role (id, label) VALUES (1, '{"ROLES": "ROLES_ADMIN"}');
+INSERT INTO sport_ludique.role (id, label) VALUES (2, '{"ROLES": "ROLES_USER"}');
+
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (1, 'LAFONTAINEJean', 'jean.lafontaine@gmail.com', 'l4f0nt4ine', '2015-01-01 10:10:10'); # admin
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (2, 'CORNEILBernie', 'bernie.corneil@gmail.com', 'c0rn31l', '2015-01-01 10:10:10'); # user
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (3, 'BOILOMichel', 'michel.boilo@gmail.com', 'm1ch3l', '2015-01-01 10:10:10'); # admin
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (4, 'VOLTERRERemy', 'remy.volterre@gmail.com', 'v0lt1r', '2015-01-01 10:10:10'); # user
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (5, 'MAULIEREJacques', 'jawcques.mauliere@gmail.com', 'm0l13r', '2015-01-01 10:10:10'); # user
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (6, 'jeanmi28', 'jeanmi28@gmail.com', 'jea4nm$28', '2021-01-04 01:00:42');
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (7, 'café_random', 'café.random@gmail.com', 'kf1r4nd0m', '2020-01-08 11:11:11');
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (8, 'alibambam3815', 'alibambam@gmail.com', 'al1bamb4m28', '2019-01-01 00:00:00');
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (9, 'sigma', 'sigmanificient@gmail.com', '@@nordvpn', '2019-02-10 22:22:22');
+INSERT INTO sport_ludique.user (id, name, email, password, creation_date) VALUES (10, 'reyks', 'reyks@gmail.com', 'r3yksg@m1ng', '2019-03-09 02:02:04');
 
 INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (2, 8, 1, 'nul', '2020-01-01 12:17:29');
 INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (3, 6, 0, 'trop nul !', '2021-09-11 10:10:24');
@@ -205,19 +208,19 @@ INSERT INTO sport_ludique.favorite (article_id, user_id) VALUES (8, 8);
 INSERT INTO sport_ludique.favorite (article_id, user_id) VALUES (9, 6);
 INSERT INTO sport_ludique.favorite (article_id, user_id) VALUES (10, 7);
 
-INSERT INTO sport_ludique.notifications (id, content) VALUES (1, 'Bienvenue sur SportLudique ! N''hésitez pas à contacter notre support si vous avez des questions');
-INSERT INTO sport_ludique.notifications (id, content) VALUES (2, 'Veuillez confirmer votre adresse mail !');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (1, 'all');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (2, 'staff');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (3, 'customers');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (4, 'stock_alert');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (5, 'order_in_progress');
+INSERT INTO sport_ludique.`group` (id, name) VALUES (6, 'change_password');
 
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (1, 1, null);
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (2, 1, null);
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (3, 1, null);
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (4, 1, null);
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (5, 1, '2020-03-09 10:37:06');
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (6, 1, '2021-01-26 18:12:17');
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (7, 1, '2021-10-03 01:11:11');
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (8, 1, null);
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (9, 1, '2019-08-30 23:59:59');
-INSERT INTO sport_ludique.notify (user_id, notif_id, read_date) VALUES (10, 1, null);
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (1, 1, 'Bienvenue sur SportLudique !', 'N''hésitez pas à contacter notre support si vous avez des questions.');
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (2, 2, '[URGENT] MESSAGE IMPORTANT', 'Merci de prévenir Monsieur Boilo de votre inscription');
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (3, 3, 'Veuillez confirmer votre adresse mail !', 'Cliquez sur le lien qui suit pour confirmer votre adresse mail afin de finaliser votre inscription.');
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (4, 4, '[URGENT] MESSAGE IMPORTANT', 'Il n''y a plus de stock pour l''article Maillot de bain femme [ID:12]');
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (5, 5, 'Validation de votre achat', 'Vous avez reçu un panier qui n''a pas encore été finalisé, si vous avez besoin d''aide vous pouvez contacter notre support.');
+INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (6, 6, 'Confirmation de mot de passe', 'Vous avez reçu un mail de confirmation pour changer votre mot de passe.');
 
 INSERT INTO sport_ludique.path (id, link) VALUES (1, 'img/B1.png');
 INSERT INTO sport_ludique.path (id, link) VALUES (2, 'img/B2.png');
