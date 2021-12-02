@@ -7,25 +7,34 @@ CREATE TABLE IF NOT EXISTS status
 (
     id    INT AUTO_INCREMENT
         PRIMARY KEY,
-    label VARCHAR(64) NOT NULL
+    label VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS role
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS user
 (
     id            INT AUTO_INCREMENT
         PRIMARY KEY,
-    role_id       INT          NOT NULL,
+    role_id       INT          NULL,
     name          VARCHAR(64)  NOT NULL,
     email         VARCHAR(128) NULL,
     password      VARCHAR(128) NOT NULL,
-    creation_date DATETIME     NOT NULL
+    creation_date DATETIME     NOT NULL,
+    FOREIGN KEY fk_user_role (role_id)
+        REFERENCES role (id)
 );
 
 CREATE TABLE IF NOT EXISTS category
 (
     id   INT AUTO_INCREMENT
         PRIMARY KEY,
-    name VARCHAR(64) NOT NULL
+    name VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS file
@@ -39,7 +48,7 @@ CREATE TABLE IF NOT EXISTS brand
     id      INT AUTO_INCREMENT
         PRIMARY KEY,
     file_id INT         NOT NULL,
-    name    VARCHAR(64) NOT NULL,
+    name    VARCHAR(32) NOT NULL,
     FOREIGN KEY fk_brand_file (file_id)
         REFERENCES file (id)
 );
@@ -48,14 +57,14 @@ CREATE TABLE IF NOT EXISTS color
 (
     id    INT AUTO_INCREMENT
         PRIMARY KEY,
-    label VARCHAR(64) NOT NULL
+    label VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS size
 (
     id    INT AUTO_INCREMENT
         PRIMARY KEY,
-    label VARCHAR(64) NOT NULL
+    label VARCHAR(8) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS article
@@ -65,7 +74,7 @@ CREATE TABLE IF NOT EXISTS article
     brand_id    INT          NOT NULL,
     file_id     INT          NOT NULL,
     name        VARCHAR(64)  NOT NULL,
-    description VARCHAR(255) NULL,
+    description VARCHAR(256) NULL,
     price       FLOAT        NULL,
     quantity    INT          NULL,
     is_active   BOOL         NULL,
@@ -139,9 +148,12 @@ CREATE TABLE IF NOT EXISTS contain
 
 CREATE TABLE IF NOT EXISTS path
 (
-    id   INT AUTO_INCREMENT
+    id      INT AUTO_INCREMENT
         PRIMARY KEY,
-    link VARCHAR(255) NOT NULL
+    file_id INT          NULL,
+    link    VARCHAR(256) NOT NULL,
+    FOREIGN KEY fk_path_file (file_id)
+        REFERENCES file (id)
 );
 
 CREATE TABLE IF NOT EXISTS measure
@@ -166,63 +178,52 @@ CREATE TABLE IF NOT EXISTS colorize
         REFERENCES color (id)
 );
 
-CREATE TABLE IF NOT EXISTS localize
+CREATE TABLE IF NOT EXISTS `group`
 (
-    path_id INT NOT NULL,
-    file_id INT NOT NULL,
-    PRIMARY KEY (file_id, path_id),
-    FOREIGN KEY fk_localize_file (file_id)
-        REFERENCES file (id),
-    FOREIGN KEY fk_localize_path (path_id)
-        REFERENCES path (id)
+    id   INT AUTO_INCREMENT
+        PRIMARY KEY,
+    name VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS notifications
 (
-    id      INT AUTO_INCREMENT
+    id        INT AUTO_INCREMENT
         PRIMARY KEY,
-    content VARCHAR(255) NOT NULL
+    group_id  INT          NOT NULL,
+    content   VARCHAR(256) NOT NULL,
+    read_date DATETIME     NULL,
+    FOREIGN KEY fk_notifications_group (group_id)
+        REFERENCES `group` (id)
 );
 
 CREATE TABLE IF NOT EXISTS favorite
 (
     article_id INT NOT NULL,
     user_id    INT NOT NULL,
-    PRIMARY KEY (article_id, user_id)
-);
-
-CREATE TABLE IF NOT EXISTS notify
-(
-    user_id   INT      NOT NULL,
-    notif_id  INT      NOT NULL,
-    read_date DATETIME NULL,
-    PRIMARY KEY (user_id, notif_id),
-    FOREIGN KEY fk_notify_user (user_id)
-        REFERENCES user (id),
-    FOREIGN KEY fk_notify_notifications (notif_id)
-        REFERENCES notifications (id)
-);
-
-CREATE TABLE IF NOT EXISTS group
-(
-    id   INT AUTO_INCREMENT
-        PRIMARY KEY,
-    name VARCHAR(128) NULL
-);
-
-CREATE TABLE IF NOT EXISTS role
-(
-    id    INT AUTO_INCREMENT
-        PRIMARY KEY,
-    LABEL VARCHAR(64) NOT NULL
+    PRIMARY KEY (article_id, user_id),
+    FOREIGN KEY fk_favorite_article (article_id)
+        REFERENCES article (id),
+    FOREIGN KEY fk_favorite_user (user_id)
+        REFERENCES user (id)
 );
 
 CREATE TABLE IF NOT EXISTS path
 (
-    id INT AUTO_INCREMENT
+    id      INT AUTO_INCREMENT
         PRIMARY KEY,
-    file_id INT NULL,
-    link CHAR(32) NOT NULL
+    file_id INT      NULL,
+    link    CHAR(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS belong
+(
+    group_id INTEGER NOT NULL,
+    user_id  INTEGER NOT NULL,
+    PRIMARY KEY (group_id, user_id),
+    FOREIGN KEY fk_belong_user (user_id)
+        REFERENCES user (id),
+    FOREIGN KEY fk_belong_group (group_id)
+        REFERENCES `group` (id)
 );
 
 CREATE INDEX i_fk_article_brand
@@ -273,12 +274,6 @@ CREATE INDEX i_fk_colorize_color
 CREATE INDEX i_fk_colorize_article
     ON colorize (article_id ASC);
 
-CREATE INDEX i_fk_localize_file
-    ON localize (file_id ASC);
-
-CREATE INDEX i_fk_localize_path
-    ON localize (path_id ASC);
-
 CREATE INDEX i_fk_brand_file
     ON brand (file_id ASC);
 
@@ -288,11 +283,17 @@ CREATE INDEX i_fk_favorite_article
 CREATE INDEX i_fk_favorite_user
     ON favorite (user_id ASC);
 
-CREATE INDEX i_fk_notify_user
-    ON notify (user_id ASC);
-
-CREATE INDEX i_fk_notify_notifications
-    ON notify (notif_id ASC);
-
 CREATE INDEX i_fk_user_role
     ON user (role_id ASC);
+
+CREATE INDEX i_fk_path_file
+    ON path (file_id ASC);
+
+CREATE INDEX i_fk_notifications_group
+    ON notifications (group_id ASC);
+
+CREATE INDEX i_fk_belong_user
+    ON belong (user_id ASC);
+
+CREATE INDEX i_fk_belong_group
+    ON belong (group_id ASC);
