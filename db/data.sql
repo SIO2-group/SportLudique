@@ -40,18 +40,18 @@ INSERT INTO sport_ludique.category (id, name) VALUES (13, 'cyclisme');
 INSERT INTO sport_ludique.category (id, name) VALUES (14, 'trail');
 INSERT INTO sport_ludique.category (id, name) VALUES (15, 'tennis');
 
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (1, 1, 6, 'Maillot de supporteur Football PSG', 'MNK DF STAD JSY SS AW', 89.99, 26, 1); # color, size : 2, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (2, 1, 7, 'Echarpe de football', 'Unisexe NK STRKE SNOOD', 19.99, 39, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (3, 1, 8, 'Vêtements de football PSG', 'LKNK DF STRK TRK SUIT K AW', 64.99, 17, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (4, 1, 9, 'Pantalon de supporteur PSG', 'MNK DF STADIUM SHORT 3R', 39.99, 71, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (5, 2, 10, 'Pantalon homme', 'JUVE TR PNT', 55, 82, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (6, 3, 11, 'Maillot de football', 'OM AWAY SHIRT REP SPO', 90, 5, 0); # color, size : 3, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (7, 3, 12, 'Tongs Homme', 'EPIC FLIP V2', 20, 92, 0); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (8, 2, 13, 'Maillot de bain Rouge', 'FIT 3SECOND BX', 29.95, 128, 0); # color, size : 3, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (9, 2, 14, 'Claquettes', 'Unisexe ADILETTE AQUA', 20, 118, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (10, 4, 15, 'Lunettes de natation', 'ZOOM X-FIT', 12, 105, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (11, 2, 16, 'Maillot de bain Noir', 'FIT BX BOS', 23, 206, 0); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, quantity, is_active) VALUES (12, 4, 17, 'Maillot de bain Femme', 'W VIBRANCY SWIM PRO BACK ONE PIECE', 40, 0, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (1, 1, 6, 'Maillot de supporteur Football PSG', 'MNK DF STAD JSY SS AW', 89.99, 26, 1); # color, size : 2, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (2, 1, 7, 'Echarpe de football', 'Unisexe NK STRKE SNOOD', 19.99, 39, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (3, 1, 8, 'Vêtements de football PSG', 'LKNK DF STRK TRK SUIT K AW', 64.99, 17, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (4, 1, 9, 'Pantalon de supporteur PSG', 'MNK DF STADIUM SHORT 3R', 39.99, 71, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (5, 2, 10, 'Pantalon homme', 'JUVE TR PNT', 55, 82, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (6, 3, 11, 'Maillot de football', 'OM AWAY SHIRT REP SPO', 90, 5, 0); # color, size : 3, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (7, 3, 12, 'Tongs Homme', 'EPIC FLIP V2', 20, 92, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (8, 2, 13, 'Maillot de bain Rouge', 'FIT 3SECOND BX', 29.95, 128, 0); # color, size : 3, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (9, 2, 14, 'Claquettes', 'Unisexe ADILETTE AQUA', 20, 118, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (10, 4, 15, 'Lunettes de natation', 'ZOOM X-FIT', 12, 105, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (11, 2, 16, 'Maillot de bain Noir', 'FIT BX BOS', 23, 206, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (12, 4, 17, 'Maillot de bain Femme', 'W VIBRANCY SWIM PRO BACK ONE PIECE', 40, 0, 0); # color, size : 1, 1
 
 INSERT INTO sport_ludique.size (id, label) VALUES (1, 'XXS');
 INSERT INTO sport_ludique.size (id, label) VALUES (2, 'XS');
@@ -182,19 +182,19 @@ INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (7, 
 INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (8, 10, 4, '2019-08-28 18:53:07');
 INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (9, 7, 4, '2020-04-25 20:52:45');
 
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (1, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (2, 5);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (3, 4);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (3, 6);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (4, 3);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (4, 4);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (5, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (6, 7);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (7, 2);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (7, 8);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (8, 2);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (9, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id) VALUES (10, 9);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (1, 1, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (2, 5, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (3, 4, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (3, 6, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (4, 3, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (4, 4, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (5, 1, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (6, 7, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (7, 2, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (7, 8, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (8, 2, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (9, 1, 1);
+INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (10, 9, 1);
 
 INSERT INTO sport_ludique.report (id, article_id, user_id, content) VALUES (1, 7, 2, 'Article à renouveler');
 INSERT INTO sport_ludique.report (id, article_id, user_id, content) VALUES (2, 8, 2, 'Modification du prix de 29.95 à 34.99');
