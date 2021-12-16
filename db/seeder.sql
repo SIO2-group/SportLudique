@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS article
     name        VARCHAR(64)  NOT NULL,
     description VARCHAR(256) NULL,
     price       FLOAT        NULL,
-    quantity    INT          NULL,
+    stock       INT          NULL,
     is_active   BOOL         NULL
 );
 
@@ -129,6 +129,7 @@ CREATE TABLE IF NOT EXISTS contain
         REFERENCES `order` (id),
     article_id INT NOT NULL
         REFERENCES article (id),
+    quantity   INT NOT NULL,
     PRIMARY KEY (order_id, article_id)
 );
 
