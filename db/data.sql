@@ -182,19 +182,19 @@ INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (7, 
 INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (8, 10, 4, '2019-08-28 18:53:07');
 INSERT INTO sport_ludique.`order` (id, user_id, status_id, pay_date) VALUES (9, 7, 4, '2020-04-25 20:52:45');
 
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (1, 1, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (2, 5, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (3, 4, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (3, 6, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (4, 3, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (4, 4, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (5, 1, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (6, 7, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (7, 2, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (7, 8, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (8, 2, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (9, 1, 1);
-INSERT INTO sport_ludique.contain (article_id, order_id, quantity) VALUES (10, 9, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (1, 1, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (1, 5, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (1, 9, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (2, 7, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (2, 8, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (3, 4, 2);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (4, 3, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (4, 4, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (5, 2, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (6, 3, 1);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (7, 6, 3);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (8, 7, 2);
+INSERT INTO sport_ludique.contain (order_id, article_id, quantity) VALUES (9, 10, 1);
 
 INSERT INTO sport_ludique.report (id, article_id, user_id, content) VALUES (1, 7, 2, 'Article à renouveler');
 INSERT INTO sport_ludique.report (id, article_id, user_id, content) VALUES (2, 8, 2, 'Modification du prix de 29.95 à 34.99');
