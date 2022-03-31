@@ -1,8 +1,8 @@
 .idea
 .vscode
 .vs
-.css
-.css.map
+*.css
+*.css.map
 *.bak
 *.lck
 
