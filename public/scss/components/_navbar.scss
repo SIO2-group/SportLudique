@@ -1,0 +1,48 @@
+.nav {
+  max-width: 1000px;
+  margin-inline: auto;
+  &-title {
+    font-weight: 700;
+    font-size: 1em;
+  }
+  &-list {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-label {
+      position: relative;
+      &::after {
+        content: "";
+        height: 100%;
+        right: 5px;
+        bottom: 0;
+        aspect-ratio: 1/1;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 60%;
+        background-image: url('/img/website/loupe.svg');
+      }
+    }
+    &-search {
+      border: 2px solid black;
+      padding: 0.2rem 1rem;
+      border-radius: 2rem;
+      &:focus {outline: none;}
+    }
+    &-element {
+      &__right {
+        display: flex;
+        gap: 2em;
+      }
+      &-text {font-size: 0.8em;}
+      &-img {height: 3vh;}
+      &-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5vw;
+      }
+    }
+  }
+}
