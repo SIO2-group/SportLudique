@@ -1,6 +1,15 @@
+.header {
+  position: fixed;
+  width: 100vw;
+  left: 0;
+  right: 0;
+  background-color: white;
+}
+
 .nav {
   max-width: 1000px;
   margin-inline: auto;
+  opacity: 95%;
   &-title {
     font-weight: 700;
     font-size: 1em;

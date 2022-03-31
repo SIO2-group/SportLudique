@@ -17,30 +17,32 @@
   {% endblock %}
 </head>
 <body>
-<nav class="nav">
-  <ul class="nav-list">
-    <li class="nav-list-element">
-      <a class="nav-list-element-link" href="#">
-        <p class="nav-title">Sport Ludique</p>
-      </a>
-    </li>
-    <li class="nav-list-element">
-      <label class="nav-list-label" for="searchbar">
-        <input id="searchbar" class="nav-list-search" type="text" placeholder="Recherchez un article">
-      </label>
-    </li>
-    <li class="nav-list-element nav-list-element__right">
-      <a class="nav-list-element-link" href="">
-        <p class="nav-list-element-text">Inscription</p>
-        <img class="nav-list-element-img" src="/img/website/inscription.svg" alt="Logo inscription">
-      </a>
-      <a class="nav-list-element-link" href="">
-        <p class="nav-list-element-text">Panier</p>
-        <img class="nav-list-element-img" src="/img/website/panier.svg" alt="Logo Panier">
-      </a>
-    </li>
-  </ul>
-</nav>
-{% block body %}{% endblock %}
+<header class="header">
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-list-element">
+        <a class="nav-list-element-link" href="#">
+          <p class="nav-title">Sport Ludique</p>
+        </a>
+      </li>
+      <li class="nav-list-element">
+        <label class="nav-list-label" for="searchbar">
+          <input id="searchbar" class="nav-list-search" type="text" placeholder="Recherchez un article">
+        </label>
+      </li>
+      <li class="nav-list-element nav-list-element__right">
+        <a class="nav-list-element-link" href="">
+          <p class="nav-list-element-text">Inscription</p>
+          <img class="nav-list-element-img" src="/img/website/inscription.svg" alt="Logo inscription">
+        </a>
+        <a class="nav-list-element-link" href="">
+          <p class="nav-list-element-text">Panier</p>
+          <img class="nav-list-element-img" src="/img/website/panier.svg" alt="Logo Panier">
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+{% block content %}{% endblock %}
 </body>
 </html>
