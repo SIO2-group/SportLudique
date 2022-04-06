@@ -4,8 +4,8 @@
   &-categories {
     display: grid;
     grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
-    grid-template-rows: 10vh;
-    grid-gap: 5vw;
+    grid-template-rows: 7vh 7vh 7vh;
+    grid-gap: 1vw;
   }
   &-element {
     display: grid;
