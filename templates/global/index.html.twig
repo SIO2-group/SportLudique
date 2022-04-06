@@ -7,36 +7,9 @@
   <div class="content">
       <h1 class="content-title">Catégories</h1>
       <ul class="content-categories">
-          <script>
-            let categories = [
-              {% for category in categories %}
-                '{{ category.name|capitalize }}',
-              {% endfor %}
-            ]
-            console.log(categories.reverse().slice(0, 5).reverse())
-            let five_cat = categories.reverse().slice(0, 5).reverse()
-
-            var top = 0
-            var bot = 4
-
-            function swipe() {
-              top++
-              bot++
-            }
-
-            console.log(five_cat[0])
-            console.log(five_cat[4])
-
-            for(var i = top; i < bot; i++) {
-              const list = document.createElement("li")
-              list.classList.add("content-categorie")
-              const text = document.createElement("p")
-              text.innerText = categories.reverse().slice(top, bot).reverse()[i]
-              document.body.appendChild(list)
-              document.body.appendChild(text)
-            }
-          </script>
-        <li><input type="button" value=">" onClick="swipe()"></li>
+        {% for category in categories %}
+          <li class="content-element">{{ category.name | capitalize }}</li>
+        {% endfor %}
       </ul>
   </div>
 {% endblock %}
