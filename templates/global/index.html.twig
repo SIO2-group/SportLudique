@@ -6,10 +6,16 @@
   <img class="backgroundimg" src="/img/website/background.jpg" alt="background">
   <div class="content">
       <h1 class="content-title">Catégories</h1>
-      <ul class="content-categories">
+      <ul class="content-list">
         {% for category in categories %}
-          <li class="content-element">{{ category.name | capitalize }}</li>
+          <li class="content-element"><a href="">{{ category.name | capitalize }}</a></li>
         {% endfor %}
       </ul>
+    <h1 class="content-title">Marques</h1>
+    <ul class="content-list">
+      {% for brand in brands %}
+        <li class="content-element"><a href="">{{ brand.name | capitalize }}</a></li>
+      {% endfor %}
+    </ul>
   </div>
 {% endblock %}
