@@ -17,6 +17,7 @@
     padding: 10px;
     transition: all 0.3s ease-in-out;
     will-change: background-color, color;
+    &-img {height: 5vh;}
     &:hover {
       background-color: black;
       color: white;

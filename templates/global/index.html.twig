@@ -14,7 +14,7 @@
     <h1 class="content-title">Marques</h1>
     <ul class="content-list">
       {% for brand in brands %}
-        <li class="content-element"><a href="">{{ brand.name | capitalize }}</a></li>
+        <li class="content-element"><a href=""><img class="content-element-img" src="/img/brands/{{ brand.link }}" alt="marque"></a></li>
       {% endfor %}
     </ul>
   </div>
