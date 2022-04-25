@@ -8,13 +8,13 @@
       <h1 class="content-title">Catégories</h1>
       <ul class="content-list">
         {% for category in categories %}
-          <li class="content-element"><a href="">{{ category.name | capitalize }}</a></li>
+          <li class="button"><a href="">{{ category.name | capitalize }}</a></li>
         {% endfor %}
       </ul>
     <h1 class="content-title">Marques</h1>
     <ul class="content-list">
       {% for brand in brands %}
-        <li class="content-element"><a href=""><img class="content-element-img" src="/img/brands/{{ brand.link }}" alt="marque"></a></li>
+        <li class="button"><a href=""><img class="button-img" src="/img/brands/{{ brand.link }}" alt="marque"></a></li>
       {% endfor %}
     </ul>
   </div>
