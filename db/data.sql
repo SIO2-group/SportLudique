@@ -1,28 +1,14 @@
 USE sport_ludique;
 
-INSERT INTO sport_ludique.file (id) VALUES (1);
-INSERT INTO sport_ludique.file (id) VALUES (2);
-INSERT INTO sport_ludique.file (id) VALUES (3);
-INSERT INTO sport_ludique.file (id) VALUES (4);
-INSERT INTO sport_ludique.file (id) VALUES (5);
-INSERT INTO sport_ludique.file (id) VALUES (6);
-INSERT INTO sport_ludique.file (id) VALUES (7);
-INSERT INTO sport_ludique.file (id) VALUES (8);
-INSERT INTO sport_ludique.file (id) VALUES (9);
-INSERT INTO sport_ludique.file (id) VALUES (10);
-INSERT INTO sport_ludique.file (id) VALUES (11);
-INSERT INTO sport_ludique.file (id) VALUES (12);
-INSERT INTO sport_ludique.file (id) VALUES (13);
-INSERT INTO sport_ludique.file (id) VALUES (14);
-INSERT INTO sport_ludique.file (id) VALUES (15);
-INSERT INTO sport_ludique.file (id) VALUES (16);
-INSERT INTO sport_ludique.file (id) VALUES (17);
+INSERT INTO sport_ludique.type (id, label) VALUES (1, 'document');
+INSERT INTO sport_ludique.type (id, label) VALUES (2, 'image');
+INSERT INTO sport_ludique.type (id, label) VALUES (3, 'video');
 
-INSERT INTO sport_ludique.brand (id, file_id, name) VALUES (1, 1, 'nike');
-INSERT INTO sport_ludique.brand (id, file_id, name) VALUES (2, 2, 'adidas');
-INSERT INTO sport_ludique.brand (id, file_id, name) VALUES (3, 3, 'puma');
-INSERT INTO sport_ludique.brand (id, file_id, name) VALUES (4, 4, 'arena');
-INSERT INTO sport_ludique.brand (id, file_id, name) VALUES (5, 5, 'asics');
+INSERT INTO sport_ludique.brand (id, name) VALUES (1, 'nike');
+INSERT INTO sport_ludique.brand (id, name) VALUES (2, 'adidas');
+INSERT INTO sport_ludique.brand (id, name) VALUES (3, 'puma');
+INSERT INTO sport_ludique.brand (id, name) VALUES (4, 'arena');
+INSERT INTO sport_ludique.brand (id, name) VALUES (5, 'asics');
 
 INSERT INTO sport_ludique.category (id, name) VALUES (1, 'homme');
 INSERT INTO sport_ludique.category (id, name) VALUES (2, 'femme');
@@ -40,18 +26,18 @@ INSERT INTO sport_ludique.category (id, name) VALUES (13, 'cyclisme');
 INSERT INTO sport_ludique.category (id, name) VALUES (14, 'trail');
 INSERT INTO sport_ludique.category (id, name) VALUES (15, 'tennis');
 
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (1, 1, 6, 'Maillot de supporteur Football PSG', 'MNK DF STAD JSY SS AW', 89.99, 26, 1); # color, size : 2, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (2, 1, 7, 'Echarpe de football', 'Unisexe NK STRKE SNOOD', 19.99, 39, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (3, 1, 8, 'Vêtements de football PSG', 'LKNK DF STRK TRK SUIT K AW', 64.99, 17, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (4, 1, 9, 'Pantalon de supporteur PSG', 'MNK DF STADIUM SHORT 3R', 39.99, 71, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (5, 2, 10, 'Pantalon homme', 'JUVE TR PNT', 55, 82, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (6, 3, 11, 'Maillot de football', 'OM AWAY SHIRT REP SPO', 90, 5, 0); # color, size : 3, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (7, 3, 12, 'Tongs Homme', 'EPIC FLIP V2', 20, 92, 0); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (8, 2, 13, 'Maillot de bain Rouge', 'FIT 3SECOND BX', 29.95, 128, 0); # color, size : 3, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (9, 2, 14, 'Claquettes', 'Unisexe ADILETTE AQUA', 20, 118, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (10, 4, 15, 'Lunettes de natation', 'ZOOM X-FIT', 12, 105, 1); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (11, 2, 16, 'Maillot de bain Noir', 'FIT BX BOS', 23, 206, 0); # color, size : 1, 1
-INSERT INTO sport_ludique.article (id, brand_id, file_id, name, description, price, stock, is_active) VALUES (12, 4, 17, 'Maillot de bain Femme', 'W VIBRANCY SWIM PRO BACK ONE PIECE', 40, 0, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (1, 1, 'Maillot de supporteur Football PSG', 'MNK DF STAD JSY SS AW', 89.99, 26, 1); # color, size : 2, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (2, 1, 'Écharpe de football', 'Unisexe NK STRKE SNOOD', 19.99, 39, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (3, 1, 'Vêtements de football PSG', 'LKNK DF STRK TRK SUIT K AW', 64.99, 17, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (4, 1, 'Pantalon de supporteur PSG', 'MNK DF STADIUM SHORT 3R', 39.99, 71, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (5, 2, 'Pantalon homme', 'JUVE TR PNT', 55, 82, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (6, 3, 'Maillot de football', 'OM AWAY SHIRT REP SPO', 90, 5, 0); # color, size : 3, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (7, 3, 'Tongs Homme', 'EPIC FLIP V2', 20, 92, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (8, 2, 'Maillot de bain Rouge', 'FIT 3SECOND BX', 29.95, 128, 0); # color, size : 3, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (9, 2, 'Claquettes', 'Unisexe ADILETTE AQUA', 20, 118, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (10, 4, 'Lunettes de natation', 'ZOOM X-FIT', 12, 105, 1); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (11, 2, 'Maillot de bain Noir', 'FIT BX BOS', 23, 206, 0); # color, size : 1, 1
+INSERT INTO sport_ludique.article (id, brand_id, name, description, price, stock, is_active) VALUES (12, 4, 'Maillot de bain Femme', 'W VIBRANCY SWIM PRO BACK ONE PIECE', 40, 0, 0); # color, size : 1, 1
 
 INSERT INTO sport_ludique.size (id, label) VALUES (1, 'XXS');
 INSERT INTO sport_ludique.size (id, label) VALUES (2, 'XS');
@@ -253,35 +239,35 @@ INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (
 INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (5, 5, 'Validation de votre achat', 'Vous avez reçu un panier qui n''a pas encore été finalisé, si vous avez besoin d''aide vous pouvez contacter notre support.');
 INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (6, 6, 'Confirmation de mot de passe', 'Vous avez reçu un mail de confirmation pour changer votre mot de passe.');
 
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (1, 1, 'B1.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (2, 2, 'B2.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (3, 3, 'B3.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (4, 4, 'B4.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (5, 5, 'B5.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (6, 6, 'A1-2.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (7, 7, 'A2-1.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (8, 8, 'A3-1.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (9, 9, 'A4-13.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (10, 10, 'A5-15.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (11, 11, 'A6-3.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (12, 12, 'A7-1.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (13, 13, 'A8-13.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (14, 14, 'A9-1.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (15, 15, 'A10-8.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (16, 16, 'A11-1.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (17, 17, 'A12-1.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (18, 6, 'A1-1.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (19, 6, 'A1-3.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (20, 8, 'A3-14.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (21, 10, 'A5-16.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (22, 11, 'A6-2.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (23, 12, 'A7-2.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (24, 14, 'A9-2.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (25, 14, 'A9-3.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (26, 14, 'A9-11.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (27, 15, 'A10-3.png');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (28, 15, 'A10-5.jpg');
-INSERT INTO sport_ludique.path (id, file_id, link) VALUES (29, 16, 'A11-3.png');
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (1, 'B1.png', 2, 1, null);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (2, 'B2.png', 2, 2, null);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (3, 'B3.png', 2, 3, null);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (4, 'B4.png', 2, 4, null);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (5, 'B5.png', 2, 5, null);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (6, 'A1-2.jpg', 2, null, 1);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (7, 'A2-1.png', 2, null, 2);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (8, 'A3-1.jpg', 2, null, 3);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (9, 'A4-13.jpg', 2, null, 4);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (10, 'A5-15.jpg', 2, null, 5);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (11, 'A6-3.jpg', 2, null, 6);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (12, 'A7-1.jpg', 2, null, 7);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (13, 'A8-13.jpg', 2, null, 8);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (14, 'A9-1.jpg', 2, null, 9);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (15, 'A10-8.jpg', 2, null, 10);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (16, 'A11-1.jpg', 2, null, 11);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (17, 'A12-1.jpg', 2, null, 12);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (18, 'A1-1.png', 2, null, 1);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (19, 'A1-3.png', 2, null, 1);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (20, 'A3-14.jpg', 2, null, 3);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (21, 'A5-16.png', 2, null, 5);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (22, 'A6-2.png', 2, null, 6);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (23, 'A7-2.jpg', 2, null, 7);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (24, 'A9-2.jpg', 2, null, 9);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (25, 'A9-3.jpg', 2, null, 9);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (26, 'A9-11.jpg', 2, null, 9);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (27, 'A10-3.png', 2, null, 10);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (28, 'A10-5.jpg', 2, null, 10);
+INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (29, 'A11-3.png', 2, null, 11);
 
 INSERT INTO sport_ludique.measure (article_id, size_id) VALUES (1, 3);
 INSERT INTO sport_ludique.measure (article_id, size_id) VALUES (1, 4);

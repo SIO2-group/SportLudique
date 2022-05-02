@@ -36,19 +36,44 @@ CREATE TABLE IF NOT EXISTS category
     name VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS file
-(
-    id INT AUTO_INCREMENT
-        PRIMARY KEY
-);
-
 CREATE TABLE IF NOT EXISTS brand
 (
-    id      INT AUTO_INCREMENT
+    id     INT AUTO_INCREMENT
         PRIMARY KEY,
-    file_id INT         NOT NULL
-        REFERENCES file (id),
-    name    VARCHAR(32) NOT NULL
+    `name` VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS article
+(
+    id            INT AUTO_INCREMENT
+        PRIMARY KEY,
+    brand_id      INT          NOT NULL
+        REFERENCES brand (id),
+    `name`        VARCHAR(64)  NOT NULL,
+    `description` VARCHAR(256) NULL,
+    price         FLOAT        NULL,
+    stock         INT          NULL,
+    is_active     BOOL         NULL
+);
+
+CREATE TABLE IF NOT EXISTS type
+(
+    id    INT AUTO_INCREMENT
+        PRIMARY KEY,
+    label VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS file
+(
+    id         INT AUTO_INCREMENT
+        PRIMARY KEY,
+    `path`     VARCHAR(32) NOT NULL,
+    type_id    INT         NOT NULL
+        REFERENCES type (id),
+    brand_id   INT         NULL
+        REFERENCES brand (id),
+    article_id INT         NULL
+        REFERENCES article (id)
 );
 
 CREATE TABLE IF NOT EXISTS color
@@ -63,21 +88,6 @@ CREATE TABLE IF NOT EXISTS size
     id    INT AUTO_INCREMENT
         PRIMARY KEY,
     label VARCHAR(8) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS article
-(
-    id          INT AUTO_INCREMENT
-        PRIMARY KEY,
-    brand_id    INT          NOT NULL
-        REFERENCES brand (id),
-    file_id     INT          NOT NULL
-        REFERENCES file (id),
-    name        VARCHAR(64)  NOT NULL,
-    description VARCHAR(256) NULL,
-    price       FLOAT        NULL,
-    stock       INT          NULL,
-    is_active   BOOL         NULL
 );
 
 CREATE TABLE IF NOT EXISTS `order`
@@ -133,7 +143,7 @@ CREATE TABLE IF NOT EXISTS contain
     PRIMARY KEY (order_id, article_id)
 );
 
-CREATE TABLE IF NOT EXISTS path
+CREATE TABLE IF NOT EXISTS `path`
 (
     id      INT AUTO_INCREMENT
         PRIMARY KEY,
@@ -203,11 +213,17 @@ CREATE TABLE IF NOT EXISTS belong
     PRIMARY KEY (group_id, user_id)
 );
 
+CREATE INDEX i_fk_file_brand
+    ON `file` (brand_id ASC);
+
+CREATE INDEX i_fk_file_type
+    ON `file` (type_id ASC);
+
+CREATE INDEX i_fk_file_article
+    ON `file` (article_id ASC);
+
 CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
-
-CREATE INDEX i_fk_article_file
-    ON article (file_id ASC);
 
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);
@@ -251,9 +267,6 @@ CREATE INDEX i_fk_colorize_color
 CREATE INDEX i_fk_colorize_article
     ON colorize (article_id ASC);
 
-CREATE INDEX i_fk_brand_file
-    ON brand (file_id ASC);
-
 CREATE INDEX i_fk_favorite_article
     ON favorite (article_id ASC);
 
@@ -262,9 +275,6 @@ CREATE INDEX i_fk_favorite_user
 
 CREATE INDEX i_fk_user_role
     ON user (role_id ASC);
-
-CREATE INDEX i_fk_path_file
-    ON path (file_id ASC);
 
 CREATE INDEX i_fk_notifications_group
     ON notifications (group_id ASC);
