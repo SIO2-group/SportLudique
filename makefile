@@ -1,29 +1,35 @@
 SHELL := /bin/bash
 SERVER_PATH := /srv/http
 ARROW := \033[1m\033[31m>\033[32m>\033[33m>\033[39m
-
 CL_GREEN := \033[32m
 CL_RESET := \033[39m
+
 .SILENT:
 
 .env:
 	echo 'APP_ENV=dev' > .env
 	echo 'APP_SECRET=15176f4509b8a40b28487e4738f79d89' >> .env
 	echo 'DATABASE_URL="mysql://dev@127.0.0.1:3306/sport_ludique?serverVersion=mariadb-10.7.3"' >> .env
+	echo -e "[${CL_GREEN}OK${CL_RESET}] Environment file created"
 
 vendor:
 	composer update
+	echo -e "[${CL_GREEN}OK${CL_RESET}] Composer updated"
 
 clean:
+	echo -e "${ARROW} Deleting var directory..."
 	rm -rf var
+	echo -e "${ARROW} Deleting vendor directory..."
 	rm -rf vendor
-	rm .env
-	rm .env.test
+	echo -e "${ARROW} Deleting environment files..."
+	rm -f .env
+	rm -f .env.test
+	echo -e "[${CL_GREEN}OK${CL_RESET}] Cleaned !"
 
 local: .env vendor
 	# Start local server
+	echo -e "${ARROW} Creating local server..."
 	symfony server:start
-
 
 prod: .env vendor
 	echo -e "${ARROW} Creating production server..."
