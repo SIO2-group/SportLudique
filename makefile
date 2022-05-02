@@ -15,6 +15,7 @@ vendor:
 	composer update
 
 clean:
+	rm -rf var
 	rm -rf vendor
 	rm .env
 	rm .env.test
