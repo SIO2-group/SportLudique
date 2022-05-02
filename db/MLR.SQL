@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS FILE
    ID_BRAND INTEGER NULL  ,
    ID_TYPE INTEGER NOT NULL  ,
    ID_ARTICLE INTEGER NULL  ,
-   PATH VARCHAR(32) NOT NULL  
+   PATH VARCHAR(32) NOT NULL
    , PRIMARY KEY (ID_FILE) 
  );
 
@@ -65,10 +65,6 @@ CREATE TABLE IF NOT EXISTS ARTICLE
 
 CREATE  INDEX I_FK_ARTICLE_BRAND
      ON ARTICLE (ID_BRAND ASC);
-
-# -----------------------------------------------------------------------------
-#       TABLE : NOTIFICATIONS
-# -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
 #       TABLE : BRAND
