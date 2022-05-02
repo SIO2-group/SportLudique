@@ -207,7 +207,7 @@ CREATE INDEX i_fk_article_brand
     ON article (brand_id ASC);
 
 CREATE INDEX i_fk_article_file
-    ON ARTICLE (file_id ASC);
+    ON article (file_id ASC);
 
 CREATE INDEX i_fk_order_user
     ON `order` (user_id ASC);

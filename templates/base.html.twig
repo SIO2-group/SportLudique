@@ -1,19 +1,48 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SportLudique{% block title %}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+
+  {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+  {% endblock %}
+</head>
+<body>
+<header class="header">
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-list-element">
+        <a class="nav-list-element-link" href="{{ path('app_global') }}">
+          <p class="nav-title">Sport Ludique</p>
+        </a>
+      </li>
+      <li class="nav-list-element">
+        <label class="nav-list-label" for="searchbar">
+          <input id="searchbar" class="nav-list-search" type="text" placeholder="Recherchez un article">
+        </label>
+      </li>
+      <li class="nav-list-element nav-list-element__right">
+        <a class="nav-list-element-link" href="">
+          Inscription
+          <img class="nav-list-element-img" src="/img/website/inscription.svg" alt="Logo inscription">
+        </a>
+        <a class="nav-list-element-link" href="">
+          Panier
+          <img class="nav-list-element-img" src="/img/website/panier.svg" alt="Logo Panier">
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+{% block content %}{% endblock %}
+</body>
 </html>

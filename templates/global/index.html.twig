@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GlobalController!{% endblock %}
+{% block title %} - Accueil{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/reyks/Scripts/web/SportLudique/src/Controller/GlobalController.php'|file_link(0) }}">src/Controller/GlobalController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/reyks/Scripts/web/SportLudique/templates/global/index.html.twig'|file_link(0) }}">templates/global/index.html.twig</a></code></li>
+{% block content %}
+  <img class="backgroundimg" src="/img/website/background.jpg" alt="background">
+  <div class="content">
+      <h1 class="content-title">Catégories</h1>
+      <ul class="content-list">
+        {% for category in categories %}
+          <li class="button"><a href="">{{ category.name | capitalize }}</a></li>
+        {% endfor %}
+      </ul>
+    <h1 class="content-title">Marques</h1>
+    <ul class="content-list">
+      {% for brand in brands %}
+        <li class="button"><a href=""><img class="button-img" src="/img/brands/{{ brand.link }}" alt="marque"></a></li>
+      {% endfor %}
     </ul>
-</div>
+  </div>
 {% endblock %}

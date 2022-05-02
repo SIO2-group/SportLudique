@@ -1,0 +1,11 @@
+.content {
+  max-width: 1000px;
+  margin-inline: auto;
+  &-list {
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 7vh;
+    place-items: center;
+    grid-gap: 5vw;
+  }
+}
