@@ -18,7 +18,7 @@ class Type
     #[ORM\Column(type: 'string', length: 32)]
     private $label;
 
-    #[ORM\OneToMany(mappedBy: 'type_id', targetEntity: File::class)]
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: File::class)]
     private $files;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Type
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
-            $file->setTypeId($this);
+            $file->setType($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Type
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
-            if ($file->getTypeId() === $this) {
-                $file->setTypeId(null);
+            if ($file->getType() === $this) {
+                $file->setType(null);
             }
         }
 
