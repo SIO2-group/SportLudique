@@ -17,9 +17,9 @@ class Article
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
-    private $brand_id;
+    private $brand;
 
-    #[ORM\Column(type: 'string', length: 64)]
+    #[ORM\Column(type: 'string', length: 64, nullable: false)]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -34,7 +34,7 @@ class Article
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $is_active;
 
-    #[ORM\OneToMany(mappedBy: 'article_id', targetEntity: File::class)]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: File::class)]
     private $files;
 
     public function __construct()
@@ -47,14 +47,14 @@ class Article
         return $this->id;
     }
 
-    public function getBrandId(): ?Brand
+    public function getBrand(): ?Brand
     {
-        return $this->brand_id;
+        return $this->brand;
     }
 
-    public function setBrandId(?Brand $brand_id): self
+    public function setBrand(?Brand $brand): self
     {
-        $this->brand_id = $brand_id;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -131,7 +131,7 @@ class Article
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
-            $file->setArticleId($this);
+            $file->setArticle($this);
         }
 
         return $this;
@@ -141,8 +141,8 @@ class Article
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
-            if ($file->getArticleId() === $this) {
-                $file->setArticleId(null);
+            if ($file->getArticle() === $this) {
+                $file->setArticle(null);
             }
         }
 
