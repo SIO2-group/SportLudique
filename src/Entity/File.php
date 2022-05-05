@@ -13,18 +13,18 @@ class File
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 32)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $path;
 
     #[ORM\ManyToOne(targetEntity: Type::class, inversedBy: 'files')]
     #[ORM\JoinColumn(nullable: false)]
-    private $type_id;
+    private $type;
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'files')]
-    private $brand_id;
+    private $brand;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'files')]
-    private $article_id;
+    private $article;
 
     public function getId(): ?int
     {
@@ -43,38 +43,38 @@ class File
         return $this;
     }
 
-    public function getTypeId(): ?Type
+    public function getType(): ?Type
     {
-        return $this->type_id;
+        return $this->type;
     }
 
-    public function setTypeId(?Type $type_id): self
+    public function setType(?Type $type): self
     {
-        $this->type_id = $type_id;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getBrandId(): ?Brand
+    public function getBrand(): ?Brand
     {
-        return $this->brand_id;
+        return $this->brand;
     }
 
-    public function setBrandId(?Brand $brand_id): self
+    public function setBrand(?Brand $brand): self
     {
-        $this->brand_id = $brand_id;
+        $this->brand = $brand;
 
         return $this;
     }
 
-    public function getArticleId(): ?Article
+    public function getArticle(): ?Article
     {
-        return $this->article_id;
+        return $this->article;
     }
 
-    public function setArticleId(?Article $article_id): self
+    public function setArticle(?Article $article): self
     {
-        $this->article_id = $article_id;
+        $this->article = $article;
 
         return $this;
     }
