@@ -18,10 +18,10 @@ class Brand
     #[ORM\Column(type: 'string', length: 32)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'brand_id', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Article::class)]
     private $articles;
 
-    #[ORM\OneToMany(mappedBy: 'brand_id', targetEntity: File::class)]
+    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: File::class)]
     private $files;
 
     public function __construct()
@@ -59,7 +59,7 @@ class Brand
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setBrandId($this);
+            $article->setBrand($this);
         }
 
         return $this;
@@ -69,8 +69,8 @@ class Brand
     {
         if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($article->getBrandId() === $this) {
-                $article->setBrandId(null);
+            if ($article->getBrand() === $this) {
+                $article->setBrand(null);
             }
         }
 
@@ -89,7 +89,7 @@ class Brand
     {
         if (!$this->files->contains($file)) {
             $this->files[] = $file;
-            $file->setBrandId($this);
+            $file->setBrand($this);
         }
 
         return $this;
@@ -99,8 +99,8 @@ class Brand
     {
         if ($this->files->removeElement($file)) {
             // set the owning side to null (unless already changed)
-            if ($file->getBrandId() === $this) {
-                $file->setBrandId(null);
+            if ($file->getBrand() === $this) {
+                $file->setBrand(null);
             }
         }
 
