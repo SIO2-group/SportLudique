@@ -13,8 +13,8 @@
       </ul>
       <h1 class="content-title">Marques</h1>
       <ul class="content-list">
-        {% for file in files %}
-          <li class="button"><a href=""><img class="button-img" src="/img/brands/{{ file.path }}" alt="marque"></a></li>
+        {% for brand in brands %}
+          <li class="button"><a href=""><img class="button-img" src="/img/brands/{{ brand.files[0].path }}" alt="{{ brand.name }}"></a></li>
         {% endfor %}
       </ul>
   </div>
