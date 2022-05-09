@@ -40,7 +40,7 @@ class Article
     #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'articles')]
     private $colors;
 
-    #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'article')]
+    #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'articles')]
     private $sizes;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]

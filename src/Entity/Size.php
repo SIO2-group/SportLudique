@@ -19,11 +19,11 @@ class Size
     private $label;
 
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'sizes')]
-    private $article;
+    private $articles;
 
     public function __construct()
     {
-        $this->article = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,15 +46,15 @@ class Size
     /**
      * @return Collection<int, Article>
      */
-    public function getArticle(): Collection
+    public function getArticles(): Collection
     {
-        return $this->article;
+        return $this->articles;
     }
 
     public function addArticle(Article $article): self
     {
-        if (!$this->article->contains($article)) {
-            $this->article[] = $article;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
         }
 
         return $this;
@@ -62,7 +62,7 @@ class Size
 
     public function removeArticle(Article $article): self
     {
-        $this->article->removeElement($article);
+        $this->articles->removeElement($article);
 
         return $this;
     }
