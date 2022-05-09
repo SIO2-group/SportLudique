@@ -36,10 +36,14 @@ class User
     #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'user')]
     private $groups;
 
+    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'users')]
+    private $favorites;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
         $this->groups = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +164,30 @@ class User
         if ($this->groups->removeElement($group)) {
             $group->removeUser($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Article $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Article $favorite): self
+    {
+        $this->favorites->removeElement($favorite);
 
         return $this;
     }

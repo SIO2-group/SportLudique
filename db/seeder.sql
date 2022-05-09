@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS report
     content    VARCHAR(2048) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS contain
+CREATE TABLE IF NOT EXISTS order_article
 (
     order_id   INT NOT NULL
         REFERENCES `order` (id),
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS notifications
     content  VARCHAR(2048) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS favorite
+CREATE TABLE IF NOT EXISTS user_article
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -232,11 +232,11 @@ CREATE INDEX i_fk_report_article
 CREATE INDEX i_fk_report_user
     ON report (user_id ASC);
 
-CREATE INDEX i_fk_contain_article
-    ON contain (article_id ASC);
+CREATE INDEX i_fk_order_article_article
+    ON order_article (article_id ASC);
 
-CREATE INDEX i_fk_contain_order
-    ON contain (order_id ASC);
+CREATE INDEX i_fk_order_article_order
+    ON order_article (order_id ASC);
 
 CREATE INDEX i_fk_size_article_article
     ON size_article (article_id ASC);
@@ -250,11 +250,11 @@ CREATE INDEX i_fk_color_article_color
 CREATE INDEX i_fk_color_article_article
     ON color_article (article_id ASC);
 
-CREATE INDEX i_fk_favorite_article
-    ON favorite (article_id ASC);
+CREATE INDEX i_fk_user_article_article
+    ON user_article (article_id ASC);
 
-CREATE INDEX i_fk_favorite_user
-    ON favorite (user_id ASC);
+CREATE INDEX i_fk_user_article_user
+    ON user_article (user_id ASC);
 
 CREATE INDEX i_fk_user_role
     ON user (role_id ASC);

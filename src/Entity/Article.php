@@ -43,11 +43,19 @@ class Article
     #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'article')]
     private $sizes;
 
+    #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'articles')]
+    private $orders;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
+    private $users;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->sizes = new ArrayCollection();
+        $this->orders = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -206,6 +214,60 @@ class Article
     {
         if ($this->sizes->removeElement($size)) {
             $size->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            $order->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavorite($this);
         }
 
         return $this;
