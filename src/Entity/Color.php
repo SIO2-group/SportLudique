@@ -51,7 +51,7 @@ class Color
         return $this->articles;
     }
 
-    public function addArticles(Article $article): self
+    public function addArticle(Article $article): self
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;

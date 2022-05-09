@@ -33,7 +33,7 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private $orders;
 
-    #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'user')]
+    #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'users')]
     private $groups;
 
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'users')]

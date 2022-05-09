@@ -20,11 +20,11 @@ class Group
     private $name;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'groups')]
-    private $user;
+    private $users;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,15 +47,15 @@ class Group
     /**
      * @return Collection<int, User>
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
         }
 
         return $this;
@@ -63,7 +63,7 @@ class Group
 
     public function removeUser(User $user): self
     {
-        $this->user->removeElement($user);
+        $this->users->removeElement($user);
 
         return $this;
     }
