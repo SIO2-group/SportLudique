@@ -37,9 +37,13 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: File::class)]
     private $files;
 
+    #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'colorize')]
+    private $colors;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +148,33 @@ class Article
             if ($file->getArticle() === $this) {
                 $file->setArticle(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Color>
+     */
+    public function getColors(): Collection
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): self
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addColorize($this);
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Color $color): self
+    {
+        if ($this->colors->removeElement($color)) {
+            $color->removeColorize($this);
         }
 
         return $this;

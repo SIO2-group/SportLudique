@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS measure
     PRIMARY KEY (article_id, size_id)
 );
 
-CREATE TABLE IF NOT EXISTS colorize
+CREATE TABLE IF NOT EXISTS color_article
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -261,11 +261,11 @@ CREATE INDEX i_fk_measure_article
 CREATE INDEX i_fk_measure_size
     ON measure (size_id ASC);
 
-CREATE INDEX i_fk_colorize_color
-    ON colorize (color_id ASC);
+CREATE INDEX i_fk_color_article_color
+    ON color_article (color_id ASC);
 
-CREATE INDEX i_fk_colorize_article
-    ON colorize (article_id ASC);
+CREATE INDEX i_fk_color_article_article
+    ON color_article (article_id ASC);
 
 CREATE INDEX i_fk_favorite_article
     ON favorite (article_id ASC);
