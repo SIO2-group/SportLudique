@@ -39,11 +39,15 @@ class User
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'users')]
     private $favorites;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Report::class)]
+    private $reports;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +192,36 @@ class User
     public function removeFavorite(Article $favorite): self
     {
         $this->favorites->removeElement($favorite);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Report>
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getUser() === $this) {
+                $report->setUser(null);
+            }
+        }
 
         return $this;
     }

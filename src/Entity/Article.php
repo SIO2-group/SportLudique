@@ -52,6 +52,9 @@ class Article
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'articles')]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Report::class)]
+    private $reports;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
@@ -60,6 +63,7 @@ class Article
         $this->orders = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -299,6 +303,36 @@ class Article
     {
         if ($this->categories->removeElement($category)) {
             $category->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Report>
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getArticle() === $this) {
+                $report->setArticle(null);
+            }
         }
 
         return $this;
