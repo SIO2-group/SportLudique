@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `group`
     name VARCHAR(128) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS notifications
+CREATE TABLE IF NOT EXISTS notification
 (
     id       INT AUTO_INCREMENT
         PRIMARY KEY,
@@ -259,8 +259,8 @@ CREATE INDEX i_fk_user_article_user
 CREATE INDEX i_fk_user_role
     ON user (role_id ASC);
 
-CREATE INDEX i_fk_notifications_group
-    ON notifications (group_id ASC);
+CREATE INDEX i_fk_notification_group
+    ON notification (group_id ASC);
 
 CREATE INDEX i_fk_group_user_user
     ON group_user (user_id ASC);

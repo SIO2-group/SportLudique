@@ -232,12 +232,12 @@ INSERT INTO sport_ludique.group_user (user_id, group_id) VALUES (10, 1);
 INSERT INTO sport_ludique.group_user (user_id, group_id) VALUES (10, 2);
 INSERT INTO sport_ludique.group_user (user_id, group_id) VALUES (10, 6);
 
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (1, 1, 'Bienvenue sur SportLudique !', 'N''hésitez pas à contacter notre support si vous avez des questions.');
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (2, 2, '[URGENT] MESSAGE IMPORTANT', 'Merci de prévenir Monsieur Boilo de votre inscription');
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (3, 3, 'Veuillez confirmer votre adresse mail !', 'Cliquez sur le lien qui suit pour confirmer votre adresse mail afin de finaliser votre inscription.');
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (4, 4, '[URGENT] MESSAGE IMPORTANT', 'Il n''y a plus de stock pour l''article Maillot de bain femme [ID:12]');
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (5, 5, 'Validation de votre achat', 'Vous avez reçu un panier qui n''a pas encore été finalisé, si vous avez besoin d''aide vous pouvez contacter notre support.');
-INSERT INTO sport_ludique.notifications (id, group_id, object, content) VALUES (6, 6, 'Confirmation de mot de passe', 'Vous avez reçu un mail de confirmation pour changer votre mot de passe.');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (1, 1, 'Bienvenue sur SportLudique !', 'N''hésitez pas à contacter notre support si vous avez des questions.');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (2, 2, '[URGENT] MESSAGE IMPORTANT', 'Merci de prévenir Monsieur Boilo de votre inscription');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (3, 3, 'Veuillez confirmer votre adresse mail !', 'Cliquez sur le lien qui suit pour confirmer votre adresse mail afin de finaliser votre inscription.');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (4, 4, '[URGENT] MESSAGE IMPORTANT', 'Il n''y a plus de stock pour l''article Maillot de bain femme [ID:12]');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (5, 5, 'Validation de votre achat', 'Vous avez reçu un panier qui n''a pas encore été finalisé, si vous avez besoin d''aide vous pouvez contacter notre support.');
+INSERT INTO sport_ludique.notification (id, group_id, object, content) VALUES (6, 6, 'Confirmation de mot de passe', 'Vous avez reçu un mail de confirmation pour changer votre mot de passe.');
 
 INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (1, 'B1.png', 2, 1, null);
 INSERT INTO sport_ludique.file (id, path, type_id, brand_id, article_id) VALUES (2, 'B2.png', 2, 2, null);

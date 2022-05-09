@@ -22,9 +22,13 @@ class Group
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'groups')]
     private $users;
 
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Notification::class)]
+    private $notifications;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,6 +68,36 @@ class Group
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getTeam() === $this) {
+                $notification->setTeam(null);
+            }
+        }
 
         return $this;
     }
