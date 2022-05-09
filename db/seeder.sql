@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS favorite
     PRIMARY KEY (article_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS belong
+CREATE TABLE IF NOT EXISTS group_user
 (
     user_id  INTEGER NOT NULL
         REFERENCES user (id),
@@ -262,8 +262,8 @@ CREATE INDEX i_fk_user_role
 CREATE INDEX i_fk_notifications_group
     ON notifications (group_id ASC);
 
-CREATE INDEX i_fk_belong_user
-    ON belong (user_id ASC);
+CREATE INDEX i_fk_group_user_user
+    ON group_user (user_id ASC);
 
-CREATE INDEX i_fk_belong_group
-    ON belong (group_id ASC);
+CREATE INDEX i_fk_group_user_group
+    ON group_user (group_id ASC);
