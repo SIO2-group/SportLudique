@@ -37,7 +37,7 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: File::class)]
     private $files;
 
-    #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'article')]
+    #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'articles')]
     private $colors;
 
     #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'article')]
