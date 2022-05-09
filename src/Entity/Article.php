@@ -43,9 +43,6 @@ class Article
     #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'article')]
     private $sizes;
 
-    #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'articles')]
-    private $orders;
-
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
     private $users;
 
@@ -58,16 +55,19 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Review::class)]
     private $reviews;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Contain::class)]
+    private $contains;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->sizes = new ArrayCollection();
-        $this->orders = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->reports = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->contains = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,33 +232,6 @@ class Article
     }
 
     /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->addArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->removeElement($order)) {
-            $order->removeArticle($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, User>
      */
     public function getUsers(): Collection
@@ -366,6 +339,36 @@ class Article
             // set the owning side to null (unless already changed)
             if ($review->getArticle() === $this) {
                 $review->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contain>
+     */
+    public function getContains(): Collection
+    {
+        return $this->contains;
+    }
+
+    public function addContain(Contain $contain): self
+    {
+        if (!$this->contains->contains($contain)) {
+            $this->contains[] = $contain;
+            $contain->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContain(Contain $contain): self
+    {
+        if ($this->contains->removeElement($contain)) {
+            // set the owning side to null (unless already changed)
+            if ($contain->getArticle() === $this) {
+                $contain->setArticle(null);
             }
         }
 

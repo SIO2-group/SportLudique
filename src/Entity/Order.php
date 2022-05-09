@@ -27,12 +27,12 @@ class Order
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $pay_date;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'orders')]
-    private $articles;
+    #[ORM\OneToMany(mappedBy: 'command', targetEntity: Contain::class)]
+    private $contains;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->contains = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,25 +77,31 @@ class Order
     }
 
     /**
-     * @return Collection<int, Article>
+     * @return Collection<int, Contain>
      */
-    public function getArticles(): Collection
+    public function getContains(): Collection
     {
-        return $this->articles;
+        return $this->contains;
     }
 
-    public function addArticle(Article $article): self
+    public function addContain(Contain $contain): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
+        if (!$this->contains->contains($contain)) {
+            $this->contains[] = $contain;
+            $contain->setCommand($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+    public function removeContain(Contain $contain): self
     {
-        $this->articles->removeElement($article);
+        if ($this->contains->removeElement($contain)) {
+            // set the owning side to null (unless already changed)
+            if ($contain->getCommand() === $this) {
+                $contain->setCommand(null);
+            }
+        }
 
         return $this;
     }

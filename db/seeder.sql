@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS report
     content    VARCHAR(2048) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS order_article
+CREATE TABLE IF NOT EXISTS contain
 (
     order_id   INT NOT NULL
         REFERENCES `order` (id),
@@ -232,11 +232,11 @@ CREATE INDEX i_fk_report_article
 CREATE INDEX i_fk_report_user
     ON report (user_id ASC);
 
-CREATE INDEX i_fk_order_article_article
-    ON order_article (article_id ASC);
+CREATE INDEX i_fk_contain_article
+    ON contain (article_id ASC);
 
-CREATE INDEX i_fk_order_article_order
-    ON order_article (order_id ASC);
+CREATE INDEX i_fk_contain_order
+    ON contain (order_id ASC);
 
 CREATE INDEX i_fk_size_article_article
     ON size_article (article_id ASC);
