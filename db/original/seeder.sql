@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS review
     PRIMARY KEY (article_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS category_article
+CREATE TABLE IF NOT EXISTS include
 (
     article_id  INT NOT NULL
         REFERENCES article (id),
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS contain
     PRIMARY KEY (order_id, article_id)
 );
 
-CREATE TABLE IF NOT EXISTS size_article
+CREATE TABLE IF NOT EXISTS measure
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS size_article
     PRIMARY KEY (article_id, size_id)
 );
 
-CREATE TABLE IF NOT EXISTS color_article
+CREATE TABLE IF NOT EXISTS colorize
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `group`
     name VARCHAR(128) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS notification
+CREATE TABLE IF NOT EXISTS notifications
 (
     id       INT AUTO_INCREMENT
         PRIMARY KEY,
@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS notification
     content  VARCHAR(2048) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS user_article
+CREATE TABLE IF NOT EXISTS favorite
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS user_article
     PRIMARY KEY (article_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS group_user
+CREATE TABLE IF NOT EXISTS belong
 (
     user_id  INTEGER NOT NULL
         REFERENCES user (id),
@@ -220,11 +220,11 @@ CREATE INDEX i_fk_review_user
 CREATE INDEX i_fk_review_article
     ON review (article_id ASC);
 
-CREATE INDEX i_fk_category_article_article
-    ON category_article (article_id ASC);
+CREATE INDEX i_fk_include_article
+    ON include (article_id ASC);
 
-CREATE INDEX i_fk_category_article_category
-    ON category_article (category_id ASC);
+CREATE INDEX i_fk_include_category
+    ON include (category_id ASC);
 
 CREATE INDEX i_fk_report_article
     ON report (article_id ASC);
@@ -238,32 +238,32 @@ CREATE INDEX i_fk_contain_article
 CREATE INDEX i_fk_contain_order
     ON contain (order_id ASC);
 
-CREATE INDEX i_fk_size_article_article
-    ON size_article (article_id ASC);
+CREATE INDEX i_fk_measure_article
+    ON measure (article_id ASC);
 
-CREATE INDEX i_fk_size_article_size
-    ON size_article (size_id ASC);
+CREATE INDEX i_fk_measure_size
+    ON measure (size_id ASC);
 
-CREATE INDEX i_fk_color_article_color
-    ON color_article (color_id ASC);
+CREATE INDEX i_fk_colorize_color
+    ON colorize (color_id ASC);
 
-CREATE INDEX i_fk_color_article_article
-    ON color_article (article_id ASC);
+CREATE INDEX i_fk_colorize_article
+    ON colorize (article_id ASC);
 
-CREATE INDEX i_fk_user_article_article
-    ON user_article (article_id ASC);
+CREATE INDEX i_fk_favorite_article
+    ON favorite (article_id ASC);
 
-CREATE INDEX i_fk_user_article_user
-    ON user_article (user_id ASC);
+CREATE INDEX i_fk_favorite_user
+    ON favorite (user_id ASC);
 
 CREATE INDEX i_fk_user_role
     ON user (role_id ASC);
 
-CREATE INDEX i_fk_notification_group
-    ON notification (group_id ASC);
+CREATE INDEX i_fk_notifications_group
+    ON notifications (group_id ASC);
 
-CREATE INDEX i_fk_group_user_user
-    ON group_user (user_id ASC);
+CREATE INDEX i_fk_belong_user
+    ON belong (user_id ASC);
 
-CREATE INDEX i_fk_group_user_group
-    ON group_user (group_id ASC);
+CREATE INDEX i_fk_belong_group
+    ON belong (group_id ASC);

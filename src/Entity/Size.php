@@ -2,23 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\SizeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: SizeRepository::class)]
+class Size
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 32)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 8)]
+    private $label;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'sizes')]
     private $articles;
 
     public function __construct()
@@ -31,14 +31,14 @@ class Category
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name): self
+    public function setLabel(string $label): self
     {
-        $this->name = $name;
+        $this->label = $label;
 
         return $this;
     }
