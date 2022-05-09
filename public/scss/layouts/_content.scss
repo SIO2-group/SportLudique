@@ -1,11 +1,15 @@
+$button_size : calc(1000px * (20/100));
 .content {
   max-width: 1000px;
   margin-inline: auto;
+  margin-outside: auto;
   &-list {
+    width: 100%;
     display: grid;
-    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 7vh;
     place-items: center;
-    grid-gap: 5vw;
+    grid-gap: 5%;
+    padding: 0;
   }
 }
