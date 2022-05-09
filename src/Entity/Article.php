@@ -55,6 +55,9 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Report::class)]
     private $reports;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Review::class)]
+    private $reviews;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
@@ -64,6 +67,7 @@ class Article
         $this->users = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->reports = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -332,6 +336,36 @@ class Article
             // set the owning side to null (unless already changed)
             if ($report->getArticle() === $this) {
                 $report->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getArticle() === $this) {
+                $review->setArticle(null);
             }
         }
 

@@ -42,12 +42,16 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Report::class)]
     private $reports;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class)]
+    private $reviews;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->reports = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,6 +224,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($report->getUser() === $this) {
                 $report->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
             }
         }
 
