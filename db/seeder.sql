@@ -143,15 +143,6 @@ CREATE TABLE IF NOT EXISTS contain
     PRIMARY KEY (order_id, article_id)
 );
 
-CREATE TABLE IF NOT EXISTS `path`
-(
-    id      INT AUTO_INCREMENT
-        PRIMARY KEY,
-    file_id INT          NULL
-        REFERENCES file (id),
-    link    VARCHAR(256) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS size_article
 (
     article_id INT NOT NULL
@@ -194,14 +185,6 @@ CREATE TABLE IF NOT EXISTS favorite
     user_id    INT NOT NULL
         REFERENCES user (id),
     PRIMARY KEY (article_id, user_id)
-);
-
-CREATE TABLE IF NOT EXISTS path
-(
-    id      INT AUTO_INCREMENT
-        PRIMARY KEY,
-    file_id INT      NULL,
-    link    CHAR(32) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS belong
