@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `path`
     link    VARCHAR(256) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS measure
+CREATE TABLE IF NOT EXISTS size_article
 (
     article_id INT NOT NULL
         REFERENCES article (id),
@@ -255,11 +255,11 @@ CREATE INDEX i_fk_contain_article
 CREATE INDEX i_fk_contain_order
     ON contain (order_id ASC);
 
-CREATE INDEX i_fk_measure_article
-    ON measure (article_id ASC);
+CREATE INDEX i_fk_size_article_article
+    ON size_article (article_id ASC);
 
-CREATE INDEX i_fk_measure_size
-    ON measure (size_id ASC);
+CREATE INDEX i_fk_size_article_size
+    ON size_article (size_id ASC);
 
 CREATE INDEX i_fk_color_article_color
     ON color_article (color_id ASC);

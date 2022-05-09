@@ -40,10 +40,14 @@ class Article
     #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'article')]
     private $colors;
 
+    #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'article')]
+    private $sizes;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->sizes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +179,33 @@ class Article
     {
         if ($this->colors->removeElement($color)) {
             $color->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Size>
+     */
+    public function getSizes(): Collection
+    {
+        return $this->sizes;
+    }
+
+    public function addSize(Size $size): self
+    {
+        if (!$this->sizes->contains($size)) {
+            $this->sizes[] = $size;
+            $size->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSize(Size $size): self
+    {
+        if ($this->sizes->removeElement($size)) {
+            $size->removeArticle($this);
         }
 
         return $this;
