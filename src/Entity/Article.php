@@ -49,6 +49,9 @@ class Article
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorites')]
     private $users;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'articles')]
+    private $categories;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
@@ -56,6 +59,7 @@ class Article
         $this->sizes = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,6 +272,33 @@ class Article
     {
         if ($this->users->removeElement($user)) {
             $user->removeFavorite($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeArticle($this);
         }
 
         return $this;

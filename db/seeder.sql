@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS review
     PRIMARY KEY (article_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS include
+CREATE TABLE IF NOT EXISTS category_article
 (
     article_id  INT NOT NULL
         REFERENCES article (id),
@@ -220,11 +220,11 @@ CREATE INDEX i_fk_review_user
 CREATE INDEX i_fk_review_article
     ON review (article_id ASC);
 
-CREATE INDEX i_fk_include_article
-    ON include (article_id ASC);
+CREATE INDEX i_fk_category_article_article
+    ON category_article (article_id ASC);
 
-CREATE INDEX i_fk_include_category
-    ON include (category_id ASC);
+CREATE INDEX i_fk_category_article_category
+    ON category_article (category_id ASC);
 
 CREATE INDEX i_fk_report_article
     ON report (article_id ASC);
