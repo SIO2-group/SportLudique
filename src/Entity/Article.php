@@ -37,7 +37,7 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: File::class)]
     private $files;
 
-    #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'colorize')]
+    #[ORM\ManyToMany(targetEntity: Color::class, mappedBy: 'article')]
     private $colors;
 
     public function __construct()
@@ -165,7 +165,7 @@ class Article
     {
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
-            $color->addColorize($this);
+            $color->addArticle($this);
         }
 
         return $this;
@@ -174,7 +174,7 @@ class Article
     public function removeColor(Color $color): self
     {
         if ($this->colors->removeElement($color)) {
-            $color->removeColorize($this);
+            $color->removeArticle($this);
         }
 
         return $this;

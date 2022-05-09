@@ -19,11 +19,11 @@ class Color
     private $label;
 
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'colors')]
-    private $colorize;
+    private $article;
 
     public function __construct()
     {
-        $this->colorize = new ArrayCollection();
+        $this->article = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,23 +46,23 @@ class Color
     /**
      * @return Collection<int, Article>
      */
-    public function getColorize(): Collection
+    public function getArticle(): Collection
     {
-        return $this->colorize;
+        return $this->article;
     }
 
-    public function addColorize(Article $colorize): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->colorize->contains($colorize)) {
-            $this->colorize[] = $colorize;
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
         }
 
         return $this;
     }
 
-    public function removeColorize(Article $colorize): self
+    public function removeArticle(Article $article): self
     {
-        $this->colorize->removeElement($colorize);
+        $this->article->removeElement($article);
 
         return $this;
     }
