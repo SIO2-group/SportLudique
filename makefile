@@ -16,6 +16,14 @@ vendor:
 	composer update
 	echo -e "[${CL_GREEN}OK${CL_RESET}] Composer updated"
 
+public/css/style.css:
+	sass public/scss/style.scss public/css/style.css
+	echo -e "[${CL_GREEN}OK${CL_RESET}] Style compiled"
+
+$(SERVER_PATH)/public/css/style.css:
+	sass $(SERVER_PATH)/public/scss/style.scss $(SERVER_PATH)/public/css/style.css
+	echo -e "[${CL_GREEN}OK${CL_RESET}] Style compiled"
+
 clean:
 	echo -e "${ARROW} Deleting var directory..."
 	rm -rf var
@@ -26,12 +34,12 @@ clean:
 	rm -f .env.test
 	echo -e "[${CL_GREEN}OK${CL_RESET}] Cleaned !"
 
-local: .env vendor
+local: .env vendor public/css/style.css
 	# Start local server
 	echo -e "${ARROW} Creating local server..."
 	symfony server:start
 
-prod: .env vendor
+prod: .env vendor $(SERVER_PATH)/public/css/style.css
 	echo -e "${ARROW} Creating production server..."
 
 	# Overriding the ownership of every server files
