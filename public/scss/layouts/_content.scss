@@ -1,4 +1,5 @@
 $button_size : calc(1000px * (20/100));
+
 .content {
   max-width: 1000px;
   margin-inline: auto;
@@ -12,4 +13,11 @@ $button_size : calc(1000px * (20/100));
     grid-gap: 5%;
     padding: 0;
   }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 5vh;
+  grid-gap: 2vh;
 }
