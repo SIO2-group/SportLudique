@@ -1,0 +1,10 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  place-items: center;
+  &-img {height: 15vh;}
+  &-price {font-size: 1.2rem;}
+}

@@ -11,6 +11,37 @@
           <li class="button"><a href="">{{ category.name | capitalize }}</a></li>
         {% endfor %}
       </ul>
+
+      <h1 class="content-title">Football</h1>
+      <div class="grid">
+        {% for article in articles %}
+          {% for category in article.categories %}
+            {% if category.name == 'football'%}
+              <div class="article">
+                <img class="article-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
+                <p class="article-name">{{ article.name }}</p>
+                <p class="article-price"><b>{{ article.price }}€</b></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+
+      <h1 class="content-title">Natation</h1>
+      <div class="grid">
+        {% for article in articles %}
+          {% for category in article.categories %}
+            {% if category.name == 'natation'%}
+              <div class="article">
+                <img class="article-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
+                <p class="article-name">{{ article.name }}</p>
+                <p class="article-price"><b>{{ article.price }}€</b></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+
       <h1 class="content-title">Marques</h1>
       <ul class="content-list">
         {% for brand in brands %}
