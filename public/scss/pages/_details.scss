@@ -1,0 +1,16 @@
+.details {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  &-img {height: 50vh;}
+  &-content {
+    // padding-top: 4vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    &-title {margin: 0;}
+    &-subtitle {margin: 0;}
+    &-price {margin-top: 2vh;}
+    &-btn {margin: 2vh 0 0 0;}
+  }
+}

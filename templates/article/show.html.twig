@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- {{ article.name }}{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <div class="details">
+      <img class="details-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
+      <div class="details-content">
+        <h1 class="details-content-title">{{ article.name }}</h1>
+        <h3 class="details-content-subtitle">{{ article.description }}</h3>
+        <h2 class="details-content-price">{{ article.price }}€</h2>
+        <button class="button details-content-btn">Acheter</button>
+      </div>
+    </div>
+  </main>
+{% endblock %}

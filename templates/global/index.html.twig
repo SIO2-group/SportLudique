@@ -4,7 +4,7 @@
 
 {% block content %}
   <img class="backgroundimg" src="/img/website/background.jpg" alt="background">
-  <div class="content">
+  <main class="content">
       <h1 class="content-title">Catégories</h1>
       <ul class="content-list">
         {% for category in categories %}
@@ -17,11 +17,11 @@
         {% for article in articles %}
           {% for category in article.categories %}
             {% if category.name == 'football'%}
-              <div class="article">
+              <a href="article/{{ article.id }}"><div class="article">
                 <img class="article-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
                 <p class="article-name">{{ article.name }}</p>
                 <p class="article-price"><b>{{ article.price }}€</b></p>
-              </div>
+              </div></a>
             {% endif %}
           {% endfor %}
         {% endfor %}
@@ -32,11 +32,11 @@
         {% for article in articles %}
           {% for category in article.categories %}
             {% if category.name == 'natation'%}
-              <div class="article">
+              <a href="article/{{ article.id }}"><div class="article">
                 <img class="article-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
                 <p class="article-name">{{ article.name }}</p>
                 <p class="article-price"><b>{{ article.price }}€</b></p>
-              </div>
+              </div></a>
             {% endif %}
           {% endfor %}
         {% endfor %}
@@ -48,5 +48,5 @@
           <li class="button"><a href=""><img class="button-img" src="/img/brands/{{ brand.files[0].path }}" alt="{{ brand.name }}"></a></li>
         {% endfor %}
       </ul>
-  </div>
+  </main>
 {% endblock %}

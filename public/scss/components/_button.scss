@@ -7,12 +7,14 @@
   border: 2px solid black;
   padding: 10px;
   will-change: background-color;
+  background-color: white;
   &-img {
     height: 3vh;
     will-change: filter;
   }
   &:hover {
     background-color: black;
+    color: white;
     & > * {
       filter: invert(100%) hue-rotate(180deg);
     }
