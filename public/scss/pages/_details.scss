@@ -11,6 +11,9 @@
     &-title {margin: 0;}
     &-subtitle {margin: 0;}
     &-price {margin-top: 2vh;}
-    &-btn {margin: 2vh 0 0 0;}
+    &-btn {
+      margin: 2vh 0 0 0;
+      &:hover{color: white;}
+    }
   }
 }
