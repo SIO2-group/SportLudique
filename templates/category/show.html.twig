@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - {{ category.name | capitalize }}{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <h1 class="main-title">{{ category.name | capitalize }}</h1>
+
+    <div class="grid">
+    {% for article in articles %}
+      <a href="../article/{{ article.id }}"><div class="article">
+          <img class="article-img" src="/img/articles/{{ article.files[0].path }}" alt="{{ article.name }}">
+          <p class="article-name">{{ article.name }}</p>
+          <p class="article-price"><b>{{ article.price }}€</b></p>
+        </div></a>
+    {% else %}
+      <p>Aucun résultat pour cette catégorie</p>
+    {% endfor %}
+    </div>
+
+  </main>
+{% endblock %}
