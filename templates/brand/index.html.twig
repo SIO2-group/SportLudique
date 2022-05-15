@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Marques{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <h1 class="main-title">Marques</h1>
+
+    <div class="list">
+      {% for brand in brands %}
+        <a href="../brand/{{ brand.id }}"><li class="button details-content-btn">{{ brand.name | capitalize }}</li></a>
+      {% endfor %}
+    </div>
+
+  </main>
+{% endblock %}

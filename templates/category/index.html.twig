@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Catégories{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <h1 class="main-title">Catégories</h1>
+
+    <div class="list">
+      {% for category in categories %}
+        <a href="../category/{{ category.id }}"><li class="button details-content-btn">{{ category.name | capitalize }}</li></a>
+      {% endfor %}
+    </div>
+
+  </main>
+{% endblock %}
