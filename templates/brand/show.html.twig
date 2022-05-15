@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} - {{ category.name | capitalize }}{% endblock %}
+{% block title %} - {{ brand.name | capitalize }}{% endblock %}
 
 {% block content %}
   <main class="main">
-    <h1 class="main-title">{{ category.name | capitalize }}</h1>
+    <h1 class="main-title">{{ brand.name | capitalize }}</h1>
 
     <div class="grid">
       {% for article in articles %}
@@ -14,7 +14,7 @@
             <p class="article-price"><b>{{ article.price }}€</b></p>
           </div></a>
       {% else %}
-        <p>Aucun résultat pour cette catégorie</p>
+        <p>Aucun résultat pour cette marque</p>
       {% endfor %}
     </div>
 
