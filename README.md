@@ -26,7 +26,7 @@ composer install
 sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 ```
 
-4. Adding dotenv config
+3. Adding dotenv config
 - Create the schema in your database if needed
 - Create a `.env` based on the template below 
   - Replace `$user` by the root user
@@ -41,7 +41,7 @@ APP_SECRET=16175e4509a8b40b28497e4737879d80
 DATABASE_URL="mysql://$user:$password@$ip/$dbname?serverVersion=mariadb-$serverVersion"
 ```
 
-5. Run the migrations
+4. Run the migrations
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
