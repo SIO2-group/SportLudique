@@ -1,36 +1,56 @@
-# INSTALLATION
+# INSTALLATION *for production server*
 
 ## Required environment
 
 - `php` **^7.3**
 
-- `composer` The php library manager,
+- `composer` The php library manager.
   If you don't have composer, download it from
-  `https://getcomposer.org/download/`
-
-- `yarn` The js package manager,
-  if you don't have yarn but npm, do `npm install -g yarn`
-  otherwise, install it from `https://classic.yarnpkg.com/lang/en/docs/install`
-
-- `mysql` **^5.7 | ^8.0** 
-
+  [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- `sass` **^1.49**
+   If you don't have sass, download it from
+  [https://sass-lang.com/install](https://sass-lang.com/install)
+- `mariadb` **^10.7**
 ### Optional environment
 - `apache` **^2.4.47**
+
+## Windows
 
 1. Install dependencies
 ```sh
 composer install
 ```
 
+2. Compile style files
 ```sh
-yarn install
+sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 ```
 
-2. Adding dotenv config
-- create a `.env` file with the database configuration
-- create the schema in your database if needed
+4. Adding dotenv config
+- Create the schema in your database if needed
+- Create a `.env` based on the template below 
+  - Replace `$user` by the root user
+  - Replace `$password` by the user password
+  - Replace `$dbname` by the database name
+  - Replace `$serverVersion` by the mariadb server version
 
-3. Run the migrations
+```sh
+APP_ENV=prod
+APP_SECRET=16175e4509a8b40b28497e4737879d80
+DATABASE_URL="mysql://$user:$password@127.0.0.1:3306/$dbname?serverVersion=mariadb-$serverVersion"
+```
+
+5. Run the migrations
 ```sh
 php bin/console doctrine:migrations:migrate
+```
+
+## Linux
+1. Replace `SERVER_PATH` by the right path of the web server in the `makefile`
+```
+SERVER_PATH := /srv/http
+```
+2. Use makefile
+```sh
+make prod
 ```
