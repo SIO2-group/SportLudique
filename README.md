@@ -4,7 +4,7 @@
 
 - `php` **^7.3**
 
-- `composer` The php library manager.\
+- `composer` **^2.3** The php library manager.\
   If you don't have composer, download it from
   [https://getcomposer.org/download/](https://getcomposer.org/download/)
 - `sass` **^1.49** A style preprocessor.\
