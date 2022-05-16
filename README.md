@@ -42,11 +42,6 @@ APP_SECRET=$secret
 DATABASE_URL="mysql://$user:$password@$ip/$dbname?serverVersion=mariadb-$serverVersion"
 ```
 
-4. Run the migrations
-```sh
-php bin/console doctrine:migrations:migrate
-```
-
 ## Linux
 1. Replace `SERVER_PATH` by the right path of the web server in the `makefile`
 ```
