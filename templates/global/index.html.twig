@@ -13,7 +13,7 @@
           <li class="button"><a href="category/{{ category.id }}">{{ category.name | capitalize }}</a></li>
         {% endfor %}
       </ul>
-      <a href="category">Voir les autres -></a>
+      <a class="link" href="category">Voir les autres -></a>
 
       <h1 class="content-title">Football</h1>
       <div class="grid">
@@ -51,6 +51,6 @@
           <li class="button"><a href="brand/{{ brand.id }}"><img class="button-img" src="/img/brands/{{ brand.files[0].path }}" alt="{{ brand.name }}"></a></li>
         {% endfor %}
       </ul>
-      <a href="brand">Voir les autres -></a>
+      <a class="link" href="brand">Voir les autres -></a>
   </main>
 {% endblock %}
