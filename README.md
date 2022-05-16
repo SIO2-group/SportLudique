@@ -31,13 +31,14 @@ sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 - Create a `.env` based on the template below 
   - Replace `$user` by the root user
   - Replace `$password` by the user password
-  - Replace `$dbname` by the database name
+  - Replace `$ip` by the ip web server
+  - Replace `$dbname` by the SportLudique database name
   - Replace `$serverVersion` by the mariadb server version
 
 ```sh
 APP_ENV=prod
 APP_SECRET=16175e4509a8b40b28497e4737879d80
-DATABASE_URL="mysql://$user:$password@127.0.0.1:3306/$dbname?serverVersion=mariadb-$serverVersion"
+DATABASE_URL="mysql://$user:$password@$ip/$dbname?serverVersion=mariadb-$serverVersion"
 ```
 
 5. Run the migrations
