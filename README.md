@@ -29,6 +29,7 @@ sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 3. Adding dotenv config
 - Create the schema in your database if needed
 - Create a `.env` based on the template below 
+  - Replace `$secret` by the APP_SECRET generated
   - Replace `$user` by the root user
   - Replace `$password` by the user password
   - Replace `$ip` by the ip web server
@@ -37,7 +38,7 @@ sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 
 ```sh
 APP_ENV=prod
-APP_SECRET=16175e4509a8b40b28497e4737879d80
+APP_SECRET=$secret
 DATABASE_URL="mysql://$user:$password@$ip/$dbname?serverVersion=mariadb-$serverVersion"
 ```
 
