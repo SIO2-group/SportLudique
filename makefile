@@ -43,7 +43,7 @@ prod: .env vendor $(SERVER_PATH)/public/css/style.css
 	echo -e "${ARROW} Creating production server..."
 
 	# Overriding the ownership of every server files
-	sudo chown -R $(shell whoami) /srv/http/*
+	sudo chown -R $(shell whoami) $(SERVER_PATH)/*
 	rm -rf $(SERVER_PATH)/*
 
 	echo -e "[${CL_GREEN}OK${CL_RESET}] Server cleared"

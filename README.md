@@ -1,60 +1,53 @@
-# SportLudique
+# INSTALLATION *for production server*
 
-![GitHub](https://img.shields.io/github/license/SIO2-group/SportLudique)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SIO2-group/SportLudique/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/SIO2-group/SportLudique/?branch=dev)
-[![Run phpunit testsuite](https://github.com/SIO2-group/SportLudique/actions/workflows/unittests.yml/badge.svg)](https://github.com/SIO2-group/SportLudique/actions/workflows/unittests.yml)
-![Lines of code](https://img.shields.io/tokei/lines/github/SIO2-group/SportLudique)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SIO2-group/SportLudique)
+## Required environment
 
+- `php` **^7.3**
 
-🏄 A sport e-commerce website
+- `composer` **^2.3** The php library manager.\
+  If you don't have composer, download it from
+  [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- `sass` **^1.49** A style preprocessor.\
+   If you don't have sass, download it from
+  [https://sass-lang.com/install](https://sass-lang.com/install)
+- `mariadb` **^10.7**
+### Optional environment
+- `apache` **^2.4.47**
 
+## Windows
 
-## Contexte
+1. Install dependencies
+```sh
+composer install
+```
 
-Vendre plus en simplifiant le circuit de vente actuel avec les nouveaux cannaux de vente.
+2. Compile style file
+```sh
+sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
+```
 
-## Acquérir de nouveau marché en ligne.
+3. Adding dotenv config
+- Create the schema in your database if needed
+- Create a `.env` based on the template below 
+  - Replace `$secret` by the APP_SECRET generated
+  - Replace `$user` by the root user
+  - Replace `$password` by the user password
+  - Replace `$ip` by the ip web server
+  - Replace `$dbname` by the SportLudique database name
+  - Replace `$serverVersion` by the mariadb server version
 
-Les points de ventes physiques voient leur CA (Chiffre d'affaire) baissé depuis plusieurs années.
+```sh
+APP_ENV=prod
+APP_SECRET=$secret
+DATABASE_URL="mysql://$user:$password@$ip/$dbname?serverVersion=mariadb-$serverVersion"
+```
 
-Le monde du numérique se développe, il représentait 8.4milliards de dollars en 2005 et 81.7en 2017 soit 10 fois plus.
-
-Dans ce contexte la direction souhaite prendre part à ce nouveau marché.
-
-Le mobile quant à lui représente 1/4du marché en ligne aussi il faudra que le site e-commerce soit accessible sur mobiles et tablettes.
-
-## Objectif
-
-L'entreprise SportLudique a vu sonCA baissé de 300 000 € en trois ans l'objectif de l'entreprise et de rattraper ce CA dès la 1ere année.
-
-La boutique en ligne devra être bien référencé afin que chaque type de page (catégorie, fiche produit et accueil) soit dans le top 3 google sur les requêtes ciblées.
-
-Le site devra être responsive, l'UX (expérience utilisateur) doit être harmonieuse entre les supports.
-
-## Description fonctionnelle
-
-Listes des fonctions principales attendues
-
-### Simplifier l'achat en ligne
-
-Un client pourra voir un produit, rechercher un produit ou encore mettre une note et un avis sur un produit qu'il a acheté.
-
-Le responsable du marketing du site pourra ajouter, modifier, supprimer des produits et faire du repporting sur les ventes et produits.
-
-Le chargé d'entrepôt doit pouvoir commander des produits.
-
-Le responsable de l'entrepôt doit être alerté sur les stocks, et pouvoir faire des rapports.
-
-## Budget et Délais
-
-Avec comme objectif avoir un retour sur investissement (ROI) avant Mai.
-
-
-<center>
-    <img width="480px" src="/docs/graph.svg">
-</center>
-
-
-| La charge de travail est estimé à 4 développeurs dont un lead pour une durée estimé a moins de1 mois. Le retour sur investissement est prévuaprès 9 Mois. | Le planning sera réalisé par le lead dev qui organisera également les taches de chacun L'outil sera développé avec un client lourd. |
-| :-- | :-- |
+## Linux
+1. Replace `SERVER_PATH` by the right path of the web server in the `makefile`
+```
+SERVER_PATH := /srv/http
+```
+2. Use makefile
+```sh
+make prod
+```
