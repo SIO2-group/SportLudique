@@ -21,7 +21,7 @@
 composer install
 ```
 
-2. Compile style files
+2. Compile style file
 ```sh
 sass $SERVER_PATH/public/scss/style.scss $SERVER_PATH/public/css/style.css
 ```
