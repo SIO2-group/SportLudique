@@ -4,10 +4,10 @@
 
 - `php` **^7.3**
 
-- `composer` The php library manager.
+- `composer` The php library manager.\
   If you don't have composer, download it from
   [https://getcomposer.org/download/](https://getcomposer.org/download/)
-- `sass` **^1.49**
+- `sass` **^1.49** A style preprocessor.\
    If you don't have sass, download it from
   [https://sass-lang.com/install](https://sass-lang.com/install)
 - `mariadb` **^10.7**
