@@ -1,7 +1,5 @@
 # INSTALLATION
 
-## dev
-
 ## Required environment
 
 - `php` **^7.3**
@@ -19,8 +17,6 @@
 ### Optional environment
 - `apache` **^2.4.47**
 
-### setup
-
 1. Install dependencies
 ```sh
 composer install
@@ -30,25 +26,11 @@ composer install
 yarn install
 ```
 
-2. Running Encore
-
-```sh 
-encore dev --watch
-```
-
-3. Adding dotenv config
+2. Adding dotenv config
 - create a `.env` file with the database configuration
 - create the schema in your database if needed
 
-4. run the migrations
+3. Run the migrations
 ```sh
 php bin/console doctrine:migrations:migrate
 ```
-
-6. Starting the server
-```sh
-symfony server:start
-```
-
-## prod
-<!-- TODO: Add prod instructions -->
