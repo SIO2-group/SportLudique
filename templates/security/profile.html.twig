@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Dashboard{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <p>Name : {{ app.user.name }}</p>
+
+    {% if not app.user.role %}
+      <p>Role : aucun</p>
+    {% else %}
+      <p>Role : {{ app.user.role.getLabel() }}</p>
+    {% endif %}
+    <p>Email : {{ app.user.email }}</p>
+    <p>Password : {{ app.user.password }}</p>
+    <p></p>
+
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+  </main>
+{% endblock %}
