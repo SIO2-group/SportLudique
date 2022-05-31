@@ -136,16 +136,16 @@ INSERT INTO sport_ludique.category_article (article_id, category_id) VALUES (12,
 INSERT INTO sport_ludique.role (id, label) VALUES (1, '{"ROLES": "ROLES_ADMIN"}');
 INSERT INTO sport_ludique.role (id, label) VALUES (2, '{"ROLES": "ROLES_USER"}');
 
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (1, 1, 'LAFONTAINEJean', 'jean.lafontaine@gmail.com', 'l4f0nt4ine', '2015-01-01 10:10:10');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (2, 2, 'CORNEILBernie', 'bernie.corneil@gmail.com', 'c0rn31l', '2015-01-01 10:10:10');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (3, 1, 'BOILOMichel', 'michel.boilo@gmail.com', 'm1ch3l', '2015-01-01 10:10:10');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (4, 2, 'VOLTERRERemy', 'remy.volterre@gmail.com', 'v0lt1r', '2015-01-01 10:10:10');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (5, 2, 'MAULIEREJacques', 'jawcques.mauliere@gmail.com', 'm0l13r', '2015-01-01 10:10:10');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (6, null, 'jeanmi28', 'jeanmi28@gmail.com', 'jea4nm$28', '2021-01-04 01:00:42');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (7, null, 'café_random', 'café.random@gmail.com', 'kf1r4nd0m', '2020-01-08 11:11:11');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (8, null, 'alibambam3815', 'alibambam@gmail.com', 'al1bamb4m28', '2019-01-01 00:00:00');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (9, null, 'sigma', 'sigmanificient@gmail.com', '@@nordvpn', '2019-02-10 22:22:22');
-INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (10, null, 'reyks', 'reyks@gmail.com', 'r3yksg@m1ng', '2019-03-09 02:02:04');
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (1, 1, 'LAFONTAINEJean', 'jean.lafontaine@gmail.com', '$2y$04$4GPDUuwj9SRdRdJxeEADf.mSHQwdd/FGdWFlnM2WxBERZdhopbg.6', '2015-01-01 10:10:10'); #l4f0nt4ine
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (2, 2, 'CORNEILBernie', 'bernie.corneil@gmail.com', '$2y$04$PuBhK3HAL1O2OGPh.7cbBuqiowmFoMlph3/sg1aFIMLTi9nGmtAJq', '2015-01-01 10:10:10'); #c0rn31l
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (3, 1, 'BOILOMichel', 'michel.boilo@gmail.com', '$2y$04$FXR.ioFnt9CMutiiJ4aUqupFPd4WSRQV21UtVuhW3uWWebUhNaxQG', '2015-01-01 10:10:10'); #m1ch3l
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (4, 2, 'VOLTERRERemy', 'remy.volterre@gmail.com', '$2y$04$x5cxSXK5R/pOsdFla1u7F.2MN0Z6tF/uGf1gmakhyYphu7KtR0wMG', '2015-01-01 10:10:10'); #v0lt1r
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (5, 2, 'MAULIEREJacques', 'jawcques.mauliere@gmail.com', '$2y$04$zc1zCSJGmP0cUHdzn3lcpOsSaNgG2PPjNVD0rHIGWO2inOs6cuLqe', '2015-01-01 10:10:10'); #m0l13r
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (6, null, 'jeanmi28', 'jeanmi28@gmail.com', '$2y$04$RGNeNvB1meKFHEP8BY5RneBmcWTKrZZCJHJscw65Gwm5GNkytbIKy', '2021-01-04 01:00:42'); #jea4nm$28
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (7, null, 'café_random', 'cafe.random@gmail.com', '$2y$04$lY6QVIVk4.eUaFyYyWnv9eFlz86ZjFPb.rJ.aNBp8B2uOhijFh.Tm', '2020-01-08 11:11:11'); #kf1r4nd0m
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (8, null, 'alibambam3815', 'alibambam@gmail.com', '$2y$04$f6lNg1N0aiXzPJ3cqLl8oOfs7GqoP4daSqGLihlrhhJaDtrG4K7Ii', '2019-01-01 00:00:00'); #al1bamb4m28
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (9, null, 'sigma', 'sigmanificient@gmail.com', '$2y$04$dA8ICMDKcQDnqQy0XzUTle8gYKL0OzNR9vyj/YciI0/EuMdnQqC5q', '2019-02-10 22:22:22'); #@@nordvpn
+INSERT INTO sport_ludique.user (id, role_id, name, email, password, creation_date) VALUES (10, null, 'reyks', 'reyks@gmail.com', '$2y$04$hUvTNY/RtGw3xHPk7OBPkePus9Akp90/WofKrOYVzq/S0V0.wdiwK', '2019-03-09 02:02:04'); #r3yksg@m1ng
 
 INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (2, 8, 1, 'nul', '2020-01-01 12:17:29');
 INSERT INTO sport_ludique.review (article_id, user_id, note, comment, post_date) VALUES (3, 6, 0, 'trop nul !', '2021-09-11 10:10:24');
