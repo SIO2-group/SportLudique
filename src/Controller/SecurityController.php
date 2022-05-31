@@ -29,4 +29,10 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route(path: '/dashboard', name: 'app_dashboard')]
+    public function dashboard(): Response
+    {
+        return $this->render('security/dashboard.html.twig', []);
+    }
 }
