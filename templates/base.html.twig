@@ -31,10 +31,17 @@
         </label>
       </li>
       <li class="nav-list-element nav-list-element__right">
-        <a class="nav-list-element-link" href="{% block connexion_path %}{% endblock %}">
-          {% block connexion %}{% endblock %}
-          <img class="nav-list-element-img" src="/img/website/connexion.svg" alt="Logo connexion">
-        </a>
+        {% if app.user %}
+          <a class="nav-list-element-link" href="{{ path('app_profile') }}">
+            Profil
+            <img class="nav-list-element-img" src="/img/website/profile.svg" alt="Logo connexion">
+          </a>
+        {% else %}
+          <a class="nav-list-element-link" href="{{ path('app_login') }}">
+            Connexion
+            <img class="nav-list-element-img" src="/img/website/connexion.svg" alt="Logo connexion">
+          </a>
+        {% endif %}
         <a class="nav-list-element-link" href="">
           Panier
           <img class="nav-list-element-img" src="/img/website/panier.svg" alt="Logo Panier">

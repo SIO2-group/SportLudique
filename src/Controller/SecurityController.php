@@ -35,4 +35,10 @@ class SecurityController extends AbstractController
     {
         return $this->render('security/dashboard.html.twig', []);
     }
+
+    #[Route(path: '/profile', name: 'app_profile')]
+    public function profile(): Response
+    {
+        return $this->render('security/profile.html.twig', []);
+    }
 }
